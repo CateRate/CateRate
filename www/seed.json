@@ -1,0 +1,119 @@
+{
+    "Organizations": [{
+        "title": "צהל",
+        "branches": [{
+            "title": "שלישות",
+            "places": [
+                {"id": 22,
+                 "title": "פיתיה",
+                 "catering": "עידית",
+                 "food": [{
+                    "title": "המבורגר וצ'יפס",
+                    "like_number": 25,
+                    "dislike_number": 732,
+                    "comments": [{
+                        "userid": 15,
+                        "content": "הדבר הכי מגעיל שאכלתי בחיים!!",
+                        "like": "false"
+                        },
+                        {"userid": 19,
+                            "content": "בסין זה היה נחשב למעדן...",
+                            "like": "false"
+                        },
+                        {"userid": 435,
+                            "content": "יחסית לאוכל צבאי זה דווקא סבבה",
+                            "like": "true"
+                        }
+                    ]
+                    },
+                    {"title": "קוסקוס ןשניצל תירס",
+                     "like_number":322,
+                     "dislike_number": 297,
+                     "comments": [{
+                          "userid": 32,
+                          "content": "בא בטוב",
+                          "like": "true"
+                         }]
+                     }
+                 ]
+                },
+                {
+                     "id": 13,
+                     "title": "חדר אוכל מסורתי",
+                     "catering": "עידית",
+                     "food": [{
+                         "title": "ספגטי ברוטב עגבניות",
+                         "like_number": 13,
+                         "dislike_number": 52,
+                         "comments": [{
+                             "userid": 134,
+                             "content": "קר, יבש, מגעיל.",
+                             "like": "false"
+                            },
+                            {
+                                "userid": 78,
+                                "content": "ספגטי... לא משהו מיוחד",
+                                "like": "true"
+                            }
+                         ]
+                        },
+                        {
+                            "title": "חזה עוף במרינדה",
+                            "like_number": 877,
+                            "dislike_number": 441,
+                            "comments": [{
+                                "userid": 90,
+                                "content": "קשה להודות, אבל עידית שיחקו אותה הפעם!",
+                                "like": "true"
+                               }
+                            ]
+                        }
+                     ]
+                }
+            ]
+        }]
+    },
+    {"title": "Google",
+        "branches": [
+        {
+            "title": "תל אביב",
+            "places": [
+                {
+                    "id": 15,
+                    "title": "חדר אוכל ראשי בנין אלקטרה",
+                    "catering": "מלונות דן",
+                    "food": [
+                        {
+                            "title": "סטייק אנטריקוט",
+                            "like_number": 2598,
+                            "dislike_number": 32,
+                            "comments": [
+                                {
+                                    "userid": 15,
+                                    "content": "WOW!!!",
+                                    "like": "true"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }]
+    }],
+
+
+
+    "Users": [{
+            "userid": 13,
+            "places": [22,13]
+        },
+        {
+            "userid": 19,
+            "places": [22]
+        },
+        {
+            "userid": 90,
+            "places": [22,13]
+        }
+    ]
+}
