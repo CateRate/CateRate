@@ -1,0 +1,61 @@
+{
+  "name": "goangular",
+  "version": "3.3.6",
+  "description": "AngularJS bindings for GoInstant",
+  "main": "Gruntfile.js",
+  "scripts": {
+    "test": "gulp test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/goinstant/goangular.git"
+  },
+  "author": "GoInstant",
+  "readmeFilename": "README.md",
+  "bugs": {
+    "url": "https://github.com/goinstant/goangular/issues"
+  },
+  "devDependencies": {
+    "mocha": "~1.9.0",
+    "gi-assert": "git://github.com/goinstant/assert.git#v1.0.0",
+    "sinon": "~1.9.0",
+    "browserify": "~3.32.1",
+    "karma": "~0.12.0",
+    "karma-browserify": "0.0.6",
+    "karma-mocha": "~0.1.1",
+    "karma-chrome-launcher": "~0.1.2",
+    "karma-phantomjs-launcher": "~0.1.2",
+    "karma-firefox-launcher": "~0.1.3",
+    "karma-safari-launcher": "~0.1.1",
+    "gulp-karma": "0.0.3",
+    "gulp": "^3.5.5",
+    "gulp-clean": "^0.2.4",
+    "gulp-rename": "^1.2.0",
+    "gulp-bump": "^0.1.6",
+    "gulp-concat": "^2.1.7",
+    "gulp-git": "^0.3.5",
+    "gulp-livereload": "^1.2.0",
+    "gulp-open": "^0.2.8",
+    "gulp-notify": "^1.2.0",
+    "gulp-load-plugins": "^0.4.0",
+    "gulp-jshint": "^1.5.0",
+    "gulp-browserify": "~0.5.0",
+    "harp": "~0.11.2",
+    "jshint-stylish": "~0.1.5",
+    "q": "^1.0.1",
+    "gulp-uglify": "~0.2.1",
+    "gulp-conventional-changelog": "~0.1.2",
+    "node-hipchat": "0.4.5",
+    "github": "0.1.16",
+    "aws-sdk": "2.0.*",
+    "async": "0.7.0"
+  },
+  "goinstant": {
+    "namespace": "integrations"
+  },
+  "dependencies": {
+    "emitter-component": "~1.1.1",
+    "lodash": "^2.4.1",
+    "args-js": "~0.10.4"
+  }
+}
