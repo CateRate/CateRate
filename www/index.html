@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <meta charset="utf-8">
-    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <meta name="viewport"
+          content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
     <title></title>
 
     <link href="lib/ionic/css/ionic.css" rel="stylesheet">
@@ -11,10 +12,17 @@
     <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
     <link href="css/ionic.app.css" rel="stylesheet">
     -->
-    <script src="../bower_components/angular/angular.js"></script>
-      <script src="../bower_components/angular-route/angular-route.js"></script>
-      <script src="https://cdn.goinstant.net/v1/platform.min.js"></script>
-    <script src="../bower_components/goangular/dist/goangular.js"></script>
+
+    <script src="lib/angular/angular.js"></script>
+    <script src="lib/angular-route/angular-route.js"></script>
+    <!--<script src="https://cdn.goinstant.net/v1/platform.min.js"></script>-->
+    <!--<script src="lib/goangular/goangular.js"></script>-->
+
+    <!-- Firebase -->
+    <script src='https://cdn.firebase.com/js/client/1.0.11/firebase.js'></script>
+    <script src='https://cdn.firebase.com/libs/angularfire/0.7.1/angularfire.min.js'></script>
+    <script src='https://cdn.firebase.com/js/simple-login/1.4.1/firebase-simple-login.js'>
+    </script>
 
     <!-- ionic/angularjs js -->
     <script src="lib/ionic/js/ionic.bundle.js"></script>
@@ -25,12 +33,11 @@
     <!-- your app's js -->
     <script src="js/app.js"></script>
     <script src="js/controllers.js"></script>
-  </head>
+</head>
 
-  <body ng-app="starter">
+<body ng-app="starter">
 
-  <div ng-controller="mainCtrl">
-      <a ng-href="{{ conn.loginProviders[0].url }}" class="button button-positive">Login With Facebook</a>
-  </div>
-  </body>
+    <ng-view></ng-view>
+
+</body>
 </html>

@@ -4,7 +4,7 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'auth'])
+var app = angular.module('starter', ['ionic', 'starter.controllers', 'firebase', 'ngRoute'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -13,92 +13,15 @@ angular.module('starter', ['ionic', 'starter.controllers', 'auth'])
       StatusBar.styleDefault();
     }
   });
-})
-
-var app = angular.module('auth', ['ngRoute', 'goangular']);
-
-app.config(['$routeProvider', '$goConnectionProvider',
-    function($routeProvider, $goConnectionProvider) {
-        var url = window.connectUrl || 'https://goinstant.net/2892dde7b64b/CateRate';
-        var origin = window.location.origin;
-        var path = window.location.pathname;
-        var returnTo = origin + path;
-
-        $goConnectionProvider.$set(url);
-        $goConnectionProvider.$loginUrl(['Facebook']);
-
-        $goConnectionProvider.$logoutUrl(returnTo);
-
-//        $routeProvider
-//            .when('/', {
-//                templateUrl: 'views/home.html',
-//                controller: 'homeCtrl'
-//            })
-//            .when('/profile', {
-//                templateUrl: 'views/profile.html',
-//                controller: 'profileCtrl',
-//                access: 'authenticated'
-//            })
-//            .when('/restricted', {
-//                templateUrl: 'views/restricted.html',
-//                controller: 'restrictedCtrl'
-//            })
-//            .otherwise({
-//                redirectTo: '/'
-//            });
-    }
-]);
-
-app.controller('homeCtrl', function($scope) {
-    $scope.title = 'Home';
 });
 
-app.controller('profileCtrl', function($scope) {
-    $scope.title = 'Profile';
-});
+app.config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
+    $routeProvider.when('/login', {templateUrl: 'CateRate/www/templates/_login.html', controller: 'LoginCtrl'})
+                  .when('/organizations', {templateUrl: 'CateRate/www/templates/_organizations.html', controller: 'OrganizationsCtrl'});
+    $routeProvider.otherwise({redirectTo: '/login'});
 
-app.controller('restrictedCtrl', function($scope) {
-    $scope.title = 'Restricted';
-});
-
-app.factory('permissions', function ($goConnection) {
-    return {
-        authorized: function(accessLevel) {
-            var permission;
-
-            switch ($goConnection.isGuest) {
-                case true:
-                    permission = 'guest';
-                    break;
-                case false:
-                    permission = 'authenticated';
-                    break;
-                default:
-                    permission = null;
-            }
-
-            if (permission === accessLevel) {
-                return true;
-            }
-
-            return false;
-        }
-    };
-});
-
-app.controller('mainCtrl',
-    function($scope, $route, $location, $goConnection, $goUsers, permissions) {
-        $scope.conn = $goConnection;
-        $scope.users = $goUsers();
-        $scope.users.$self();
-
-        $goConnection.$ready().then(function(connection) {
-            console.log(connection);
-        }, function (err) {
-            console.log(err)
-        });
-    }
-);
+    $locationProvider.html5Mode(true);
+}]);
 
 //.config(function($stateProvider, $urlRouterProvider) {
 //  $stateProvider

@@ -1,18 +1,21 @@
 angular.module('starter.controllers', [])
-//
-//.controller('AppCtrl', function($scope) {
-//})
-//
-//.controller('PlaylistsCtrl', function($scope) {
-//  $scope.playlists = [
-//    { title: 'Reggae', id: 1 },
-//    { title: 'Chill', id: 2 },
-//    { title: 'Dubstep', id: 3 },
-//    { title: 'Indie', id: 4 },
-//    { title: 'Rap', id: 5 },
-//    { title: 'Cowbell', id: 6 }
-//  ];
-//})
-//
-//.controller('PlaylistCtrl', function($scope, $stateParams) {
-//})
+    .controller('LoginCtrl', function($scope, $firebaseSimpleLogin, $window, $location) {
+        var dataRef = new Firebase("https://caterate.firebaseio.com");
+        $scope.loginObj = $firebaseSimpleLogin(dataRef);
+
+        $scope.facebookLogin = function () {
+            $scope.loginObj.$login('facebook').then(function(user) {
+                console.log('Logged in as: ', user.displayName);
+            }, function(error) {
+                console.error('Login failed: ', error);
+            });
+        }
+
+        $scope.loginObj.$getCurrentUser().then(function(data){
+            //$window.location.href = 'organizations';
+            $location.path('/organizations');
+        });
+}).controller('OrganizationsCtrl', function ($scope, $firebase) {
+    var organizationsRef = new Firebase('https://caterate.firebaseio.com/Organizations');
+    $scope.organizations = $firebase(organizationsRef);
+});
