@@ -18,4 +18,7 @@ angular.module('starter.controllers', [])
 }).controller('OrganizationsCtrl', function ($scope, $firebase) {
     var organizationsRef = new Firebase('https://caterate.firebaseio.com/Organizations');
     $scope.organizations = $firebase(organizationsRef);
-});
+}).controller('UserPlacesCtrl', function ($scope, $firebase) {
+        var userPlacesRef = new Firebase('https://caterate.firebaseio.com/Users/facebookuser');
+        $scope.userPlaces = $firebase(userPlacesRef);
+    })

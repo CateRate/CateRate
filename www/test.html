@@ -6,7 +6,7 @@
           content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
     <title></title>
 
-
+    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
 
     <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
@@ -14,7 +14,7 @@
     -->
 
     <script src="lib/angular/angular.js"></script>
-    <script src="lib/angular-route/angular-route.js"></script>
+
     <!--<script src="https://cdn.goinstant.net/v1/platform.min.js"></script>-->
     <!--<script src="lib/goangular/goangular.js"></script>-->
 
@@ -28,7 +28,7 @@
     <script src="lib/ionic/js/ionic.bundle.js"></script>
 
     <!-- cordova script (this will be a 404 during development) -->
-    <script src="cordova.js"></script>
+
 
     <!-- your app's js -->
     <script src="js/app.js"></script>
@@ -37,7 +37,9 @@
 
 <body ng-app="starter">
 
-    <ng-view></ng-view>
+<ul class="list">
+    <li class="item" ng-repeat="place in userPlaces"> {{ place.title }} </li>
+</ul>
 
 </body>
 </html>
