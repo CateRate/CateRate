@@ -122,6 +122,13 @@ app.factory("placesService", function($firebase, $rootScope) {
                 });
             })
             return branches;
+        },
+        likeFood: function (userId, placeId, foodId, isLike) {
+            var foodBaseUrl = 'https://caterate.firebaseio.com/Places/' + placeId + '/Foods/' + foodId;
+            var likeList = new Firebase(foodBaseUrl + "/likers");
+            var like = {};
+            like[userId] = isLike;
+            likeList.update(like);
         }
     };
 });
