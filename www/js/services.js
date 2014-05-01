@@ -124,19 +124,44 @@ app.factory("placesService", function($firebase, $rootScope) {
             })
             return branches;
         },
-        likeFood: function (userId, placeId, foodId, isLike, currentAmount) {
-            var foodBaseUrl = 'https://caterate.firebaseio.com/Places/' + placeId + '/Foods/' + foodId;
-            var likersList = new Firebase(foodBaseUrl + "/likers");
-            var liker = {};
-            liker[userId] = isLike;
-            likersList.update(liker);
+        likeFood: function (userId, placeId, foodId, isLike, currentLikes, currentDislikes, currentLikers) {
+            var baseUrl = 'https://caterate.firebaseio.com/Places/' + placeId + '/Foods/' + foodId;
+            console.log(Object.keys(currentLikers).indexOf(8));
+            if(Object.keys(currentLikers).indexOf(userId) != -1 && currentLikers[userId] == isLike){
+                var deleteUrl = baseUrl + "/likers/" + userId;
+                new Firebase(deleteUrl).remove();
 
-            if(isLike){
-                var likesList = new Firebase(foodBaseUrl + "/likes");
-                likesList.set(currentAmount + 1);
-            }else{
-                var dislikesList = new Firebase(foodBaseUrl + "/dislikes");
-                dislikesList.set(currentAmount + 1);
+                if(isLike){
+                    new Firebase(baseUrl + "/likes").set(currentLikes - 1);
+                }else {
+                    new Firrebase(baseUrl + "/dislikes").set(currentDislikes - 1);
+                }
+            }else if(Object.keys(currentLikers).indexOf(userId) != -1 && currentLikers[userId] != isLike) {
+                var changeUrl = baseUrl + "/likers";
+                var liker = {};
+                liker[userId] = isLike;
+                new Firebase(changeUrl).update(liker);
+
+                if(isLike){
+                    new Firebase(baseUrl + "/likes").set(currentLikes + 1);
+                    new Firebase(baseUrl + "/dislikes").set(currentDislikes - 1);
+                }else {
+                    new Firebase(baseUrl + "/dislikes").set(currentDislikes + 1);
+                    new Firebase(baseUrl + "/likes").set(currentLikes - 1)
+                }
+            }else {
+                var likersList = new Firebase(baseUrl + "/likers");
+                var liker = {};
+                liker[userId] = isLike;
+                likersList.update(liker);
+
+                if(isLike){
+                    var likesList = new Firebase(baseUrl + "/likes");
+                    likesList.set(currentLikes + 1);
+                }else{
+                    var dislikesList = new Firebase(baseUrl + "/dislikes");
+                    dislikesList.set(currentDislikes + 1);
+                }
             }
         },
         reportTraffic: function (placeId, trafficReport, currentTraffic) {
@@ -169,7 +194,6 @@ app.factory("userService", function($firebase, $rootScope, placesService, branch
                     new Firebase(placesBaseUrl + "/" + placeId).on("value", function(placesSnapshot) {
                         var place = placesSnapshot.val();
                         place.id = placeId;
-                        console.log(place);
                         places.push(angular.copy(place));
                         $rootScope.$apply();
                     });
