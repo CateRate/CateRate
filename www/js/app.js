@@ -14,7 +14,7 @@ var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.se
         }
     });
 })
-.run(function ($firebaseSimpleLogin, $state, $rootScope) {
+.run(function ($firebaseSimpleLogin, $state, $rootScope, $firebase) {
         var dataRef = new Firebase("https://caterate.firebaseio.com/");
         var loginObj = $firebaseSimpleLogin(dataRef);
 
@@ -27,7 +27,14 @@ var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.se
         });
 
         $rootScope.$on('$firebaseSimpleLogin:login', function(e, user) {
+            var userRef = new Firebase('https://caterate.firebaseio.com/Users');
+            var newUser = {};
+
+            newUser[user.id] = { name: user.displayName };
+//            userRef.push(newUser);
+            $firebase(userRef).$update(newUser);
             $state.go('organizations');
+
         });
 
         $rootScope.$on('$firebaseSimpleLogin:logout', function(e, user) {
