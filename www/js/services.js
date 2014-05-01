@@ -79,15 +79,17 @@ app.factory("branchesService", function($firebase) {
         },
 
         getOrganizationByBranchId: function(id) {
-            var OrganizationsBaseUrl = 'https://caterate.firebaseio.com/Organizations';
-            var organization;
+
+            var orgBaseUrl = 'https://caterate.firebaseio.com/Organizations';
+            var orgs = [];
             var branch = new Firebase(baseUrl + "/" + id);
-            branch.on('value', function (snapshot) {
-                new Firebase(OrganizationsBaseUrl + "/" + snapshot.organizationId).on("value", function (orgSnapshot) {
-                    organization = orgSnapshot.val();
-                });
-                return organization;
-            })
+            branch.on('value', function(snapshot) {
+                    new Firebase(orgBaseUrl + "/" + snapshot.val().organizationId).on("value", function(orgSnapshot) {
+                        var org = orgSnapshot.val();
+                        orgs.push(angular.copy(org));
+                    });
+                })
+            return orgs;
         }
     };
 });
