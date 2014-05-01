@@ -152,6 +152,15 @@ app.factory("userService", function($firebase, $rootScope) {
                 })
             })
             return places;
+        },
+        addPlacesToUser: function (userId, placesIds) {
+            var placesBaseUrl = 'https://caterate.firebaseio.com/Places';
+            var userPlaces = new Firebase(baseUrl + "/" + userId + "/" + "Places");
+            angular.forEach(placesIds, function (placeId) {
+                var place = {};
+                place[placeId] = true;
+                userPlaces.update(place);
+            });
         }
     };
 });
