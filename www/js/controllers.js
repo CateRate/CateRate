@@ -13,12 +13,14 @@ angular.module('starter.controllers', [])
             console.error('Unable to login', error);
         });
     };
-}).controller('OrganizationsCtrl', function ($scope, loginManager, $location, organizationService) {
+}).controller('OrganizationsCtrl', function ($scope, loginManager, $location, organizationService, userService) {
     $scope.organizations = organizationService.index();
     $scope.logout = function () {
         loginManager.logout();
             $location.path('/login');
     }
+
+        userService.addPlacesToUser("1", [2,5]);
     console.log("org")
 }).controller('OrganizationCtrl', function ($scope, organizationService, $stateParams) {
     $scope.organization = {};
