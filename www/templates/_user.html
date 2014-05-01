@@ -7,8 +7,6 @@
     </ion-nav-buttons>
 
     <ion-content>
-        <img src="img/logo.png" style="height: 50px;">
-
         <div class="list">
 
             <a class="item item-avatar item-icon-right"  ng-href="#/places/{{ place.id }}" ng-repeat="place in user.places" dir="rtl">
@@ -23,4 +21,8 @@
             </a>
         </div>
     </ion-content>
+    <div class="bar bar-footer">
+        <div class="title"><img src='img/logo.png' height='50px'></div>
+
+    </div>
 </ion-view>
