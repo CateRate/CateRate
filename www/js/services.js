@@ -145,6 +145,7 @@ app.factory("userService", function($firebase, $rootScope) {
                 angular.forEach(Object.keys(snapshot.val().Places), function(placeId) {
                     new Firebase(placesBaseUrl + "/" + placeId).on("value", function(placesSnapshot) {
                         var place = placesSnapshot.val();
+                        place.id = placeId;
                         places.push(angular.copy(place));
                         $rootScope.$apply();
                     });
