@@ -1,4 +1,4 @@
-<ion-view title="חדר אוכל כלשהו">
+<ion-view title="התפריט של {{place.name}}">
     <ion-content>
         <div class="row" ng-repeat="food in place.Foods" ng-show="food"style="border-bottom: 1px solid grey; margin:5px;">
             <div class="col" style="max-width: 100px; text-align: center;">
@@ -7,9 +7,9 @@
                 {{food.name}}
             </div>
             <div class="col">
-                <div style="display: inline-block; height: 22px;margin-top: 16px;background: blue; width: {{ 90 * food.likes / (food.likes + food.dislikes) }}%; border-radius: 0px 8px 8px 0px; border: 1px solid white;"></div>{{food.likes}}
+                <div style="display: inline-block; height: 22px;margin-top: 16px;background: cornflowerblue; width: {{ 90 * food.likes / (food.likes + food.dislikes) }}%; border-radius: 0px 8px 8px 0px; border: 1px solid white;"></div>{{food.likes}}
                 <br/>
-                <div style="display: inline-block; height: 22px;background: red; width: {{ 90 * food.dislikes / (food.likes + food.dislikes) }}%; border-radius: 0px 8px 8px 0px; border: 1px solid white;"></div>{{food.dislikes}}
+                <div style="display: inline-block; height: 22px;background: indianred; width: {{ 90 * food.dislikes / (food.likes + food.dislikes) }}%; border-radius: 0px 8px 8px 0px; border: 1px solid white;"></div>{{food.dislikes}}
             </div>
         </div>
     </ion-content>
