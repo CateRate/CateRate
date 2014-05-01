@@ -18,6 +18,23 @@ var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.se
         var dataRef = new Firebase("https://caterate.firebaseio.com/");
         var loginObj = $firebaseSimpleLogin(dataRef);
 
+        loginObj.$getCurrentUser().then(function(user) {
+            if(!user){
+                // Might already be handled by logout event below
+                $state.go('login');
+            }
+        }, function(err) {
+        });
+
+        $rootScope.$on('$firebaseSimpleLogin:login', function(e, user) {
+            $state.go('organizations');
+        });
+
+        $rootScope.$on('$firebaseSimpleLogin:logout', function(e, user) {
+            console.log($state);
+            $state.go('login');
+        });
+
 });
 
 app.config(function($stateProvider, $urlRouterProvider, loginManagerProvider) {
@@ -43,18 +60,10 @@ app.config(function($stateProvider, $urlRouterProvider, loginManagerProvider) {
             controller: "OrganizationCtrl"
         }).state('branch', {
             url: "/organizations/:organizationId/branches/:branchId",
-            templateUrl: "templates/_branch.html",
-            controller: "BranchCtrl"
-        }).state('user', {
-            url: "/user",
-            templateUrl: "templates/_user.html",
-            controller: "UserCtrl"
-        }).state('place', {
-            url: "/places/:placeId",
-            templateUrl: "templates/_place.html",
-            controller: "PlaceCtrl"
+            templateUrl: "templates/_organization.html",
+            controller: "OrganizationCtrl"
         });
 
     // if none of the above states are matched, use this as the fallback
-    $urlRouterProvider.otherwise(loginManagerProvider.isLoggedIn() ? "/user" : "/login");
+    $urlRouterProvider.otherwise(loginManagerProvider.isLoggedIn() ? "/organizations" : "/login");
 });
