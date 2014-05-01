@@ -10,11 +10,12 @@
         </button>
     </ion-nav-buttons>
     <ion-content>
-        <a class="item item-icon-right" ng-repeat="(foodId, food) in place.Foods" ng-href="#/places/{{ placeId }}/foods/{{foodId}}">
+        <a class="item item-icon-right" ng-show="food" ng-repeat="(foodId, food) in place.Foods" ng-href="#/places/{{ placeId }}/foods/{{foodId}}">
             <div class="row" ng-show="food"style="z-index: 1000; margin:5px;">
                 <div class="col" style="max-width: 70px; text-align: center;">
-                    <img ng-src="{{ food.imageUrl }}" style="min-width: 80px; max-width: 80px;min-height: 80px; max-height: 80px; border: 4px solid red; border-radius: 100px; margin: 10px; background: white;" />
+                    <img class="traffic-{{ food.traffic | number:0 }}" ng-src="{{ food.imageUrl }}" style="min-width: 80px; max-width: 80px;min-height: 80px; max-height: 80px; border-radius: 100px; margin: 10px; background: white;" />
                     <br/>
+
                     <div style="width: 10%; min-width:100px;">
                         {{food.name}}
                     </div>
