@@ -1,12 +1,15 @@
-<div class="col">
-    <div class="list card">
-        <div class="item item-avatar">
-            <img src="http://upload.wikimedia.org/wikipedia/he/d/db/Idit-Dan.png">
-            <h2>חדר אוכל</h2>
-            <p>צה"ל / שלישות</p>
-        </div>
-        <div class="item item-image">
-            <img src="http://www.misadot4u.co.il/pictures/rest_best_articles/52.jpg">
-        </div>
+<img src="img/logo.png" style="height: 50px;">
+<div class="row" ng-repeat="place in user.places">
+    <div class="col">
+        <a class="list card" ng-href="#/places/{{ place.id }}">
+            <div class="item item-avatar" dir="rtl">
+                <img src="http://upload.wikimedia.org/wikipedia/he/d/db/Idit-Dan.png">
+                <h2>{{ place.name }}</h2>
+                <p>צה"ל / שלישות</p>
+            </div>
+            <div class="item item-image">
+                <img ng-src="{{ place.imageUrl }}">
+            </div>
+        </a>
     </div>
 </div>

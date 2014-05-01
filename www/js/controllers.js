@@ -1,5 +1,5 @@
 angular.module('starter.controllers', [])
-    .controller('LoginCtrl', function($scope, $firebaseSimpleLogin, loginManager, $location) {
+    .controller('LoginCtrl', function($scope, $firebaseSimpleLogin, loginManager, $location, $state) {
     $scope.loginData = {};
 
     var dataRef = new Firebase("https://caterate.firebaseio.com/");
@@ -8,6 +8,7 @@ angular.module('starter.controllers', [])
     $scope.login = function() {
         $scope.loginObj.$login('facebook').then(function(user) {
             // The root scope event will trigger and navigate
+            $state.go('user');
         }, function(error) {
             // Show a form error here
             console.error('Unable to login', error);
@@ -29,6 +30,18 @@ angular.module('starter.controllers', [])
     $scope.branch.id = $stateParams.branchId;
     $scope.branch.organizationId = $stateParams.organizationId;
     $scope.branch.places = branchesService.getPlacesByBranchId($scope.branch.id);
+
+    $scope.chosen = {};
+}).controller('UserCtrl', function ($scope, userService) {
+        $scope.user = {};
+        $scope.user.id = 3;
+        $scope.user.places = userService.getPlacesByUserId($scope.user.id);
+
+        $scope.chosen = {};
+}).controller('PlaceCtrl', function ($scope, userService, $stateParams, placesService) {
+    $scope.place = {};
+    $scope.place.id = $stateParams.placeId;
+    $scope.places = placesService.get($scope.place.id);
 
     $scope.chosen = {};
 });
