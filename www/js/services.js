@@ -32,6 +32,9 @@ app.factory("organizationService", function($firebase) {
         },
         get: function(id) {
             return $firebase(new Firebase(baseUrl + "/" + id));
+        },
+        getBranchesByOrganizationId: function(id) {
+
         }
     };
 });
