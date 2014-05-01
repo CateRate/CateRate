@@ -1,4 +1,5 @@
-<ion-view title="התפריט של {{place.name}}">
+<!--<ion-view title="התפריט של {{place.name}}">-->
+        <ion-view title="<img src='img/logo.png' height='50px'>">
     <ion-content>
         <div class="row" ng-repeat="food in place.Foods" ng-show="food"style="border-bottom: 1px solid grey; margin:5px;">
             <div class="col" style="max-width: 100px; text-align: center;">
@@ -13,4 +14,10 @@
             </div>
         </div>
     </ion-content>
+
+
+            <div class="bar bar-footer">
+                <div class="title"><img src='img/logo.png' height='50px'></div>
+
+            </div>
 </ion-view>
