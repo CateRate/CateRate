@@ -54,6 +54,14 @@ app.config(function($stateProvider, $urlRouterProvider, loginManagerProvider) {
             url: "/organizations",
             templateUrl: "templates/_organizations.html",
             controller: "OrganizationsCtrl"
+        }).state('organization', {
+            url: "/organizations/:organizationId",
+            templateUrl: "templates/_organization.html",
+            controller: "OrganizationCtrl"
+        }).state('branch', {
+            url: "/organizations/:organizationId/branches/:branchId",
+            templateUrl: "templates/_organization.html",
+            controller: "OrganizationCtrl"
         });
 
     // if none of the above states are matched, use this as the fallback

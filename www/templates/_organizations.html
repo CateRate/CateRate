@@ -13,9 +13,9 @@
         <!-- The content of the page -->
 
         <div class="list">
-            <a class="item item-icon-left item-icon-right" ng-repeat="organization in organizations" href="#">
+            <a class="item item-icon-left item-icon-right" ng-repeat="(id, organization) in organizations" ng-href="#/organizations/{{ id }}">
                 <i class="icon ion-ios7-world-outline"></i>
-                {{ organization.title }}
+                {{ organization.name }}
                 <i class="icon ion-chevron-right icon-accessory"></i>
             </a>
         </div>
