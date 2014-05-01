@@ -4,24 +4,25 @@ angular.module('starter.services', [])
     // service or factory. This can only be done at the
     // "$get" method.
 
-    this.$get = function($firebaseSimpleLogin) {
+    this.$get = function($firebaseSimpleLogin, userService) {
         var dataRef = new Firebase("https://caterate.firebaseio.com");
         var loginObj = $firebaseSimpleLogin(dataRef);
         return {
             login: function () {
-                return loginObj.$login('facebook').then(function () {
-                    localStorage.setItem("isLoggedIn", true);
+                return loginObj.$login('facebook').then(function (user) {
+                    localStorage.setItem("userId", user.id);
+                    userService.addUser(user.id, user.displayName);
                 });
             },
             logout: function () {
                 loginObj.$logout('facebook');
-                localStorage.removeItem("isLoggedIn");
+                localStorage.removeItem("userId");
             }
         };
     };
 
     this.isLoggedIn = function () {
-            return !!localStorage.getItem("isLoggedIn");
+            return !!localStorage.getItem("userId");
     };
 });
 
@@ -178,14 +179,19 @@ app.factory("userService", function($firebase, $rootScope, placesService, branch
             })
             return places;
         },
-        addPlacesToUser: function (userId, placesIds) {
+        addPlacesToUser: function (placesIds) {
             var placesBaseUrl = 'https://caterate.firebaseio.com/Places';
-            var userPlaces = new Firebase(baseUrl + "/" + userId + "/" + "Places");
+            var userPlaces = new Firebase(baseUrl + "/" + localStorage.getItem("userId") + "/" + "Places");
             angular.forEach(placesIds, function (placeId) {
                 var place = {};
                 place[placeId] = true;
                 userPlaces.update(place);
             });
+        },
+        addUser: function (userId, userName) {
+            var user = {};
+            user[userId] = { name: userName };
+            $firebase(new Firebase(baseUrl)).$update(user);
         }
     };
 });

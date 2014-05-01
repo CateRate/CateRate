@@ -1,9 +1,16 @@
-<div class="row" ng-repeat="food in place.Foods" ng-show="food">
-    <div class="col-33">
-        <img ng-src="{{ food.imageUrl }}" style="min-width: 70px; max-width: 70px;min-height: 70px; max-height: 70px; border: 3px solid red; border-radius: 100px; margin: 10px; background: white;" />
-    </div>
-    <div class="col-67">
-        <div style="background: blue; width: 50%">a</div>
-        <div style="background: red; width: 50%">a</div>
-    </div>
-</div>
+<ion-view title="התפריט של {{place.name}}">
+    <ion-content>
+        <div class="row" ng-repeat="food in place.Foods" ng-show="food"style="border-bottom: 1px solid grey; margin:5px;">
+            <div class="col" style="max-width: 100px; text-align: center;">
+                <img ng-src="{{ food.imageUrl }}" style="min-width: 80px; max-width: 80px;min-height: 80px; max-height: 80px; border: 4px solid red; border-radius: 100px; margin: 10px; background: white;" />
+                <br/>
+                {{food.name}}
+            </div>
+            <div class="col">
+                <div style="display: inline-block; height: 22px;margin-top: 16px;background: cornflowerblue; width: {{ 90 * food.likes / (food.likes + food.dislikes) }}%; border-radius: 0px 8px 8px 0px; border: 1px solid white;"></div>{{food.likes}}
+                <br/>
+                <div style="display: inline-block; height: 22px;background: indianred; width: {{ 90 * food.dislikes / (food.likes + food.dislikes) }}%; border-radius: 0px 8px 8px 0px; border: 1px solid white;"></div>{{food.dislikes}}
+            </div>
+        </div>
+    </ion-content>
+</ion-view>
