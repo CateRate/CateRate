@@ -18,4 +18,6 @@ angular.module('starter.controllers', [])
             loginManager.logout();
                 $location.path('/login');
         }
+}).controller('UserCtrl', function (organizationService) {
+    var org = organizationService.get('1');
 });

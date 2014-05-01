@@ -24,3 +24,14 @@ angular.module('starter.services', [])
             return !!localStorage.getItem("isLoggedIn");
     };
 });
+app.factory("organizationService", function($firebase) {
+    var baseUrl = 'https://caterate.firebaseio.com/Organizations';
+    return {
+        index: function() {
+            return $firebase(new Firebase(baseUrl));
+        },
+        get: function(id) {
+            return $firebase(new Firebase(baseUrl + "/" + id));
+        }
+    };
+});

@@ -32,6 +32,11 @@ app.config(function($stateProvider, $urlRouterProvider, loginManagerProvider) {
             url: "/organizations",
             templateUrl: "templates/_organizations.html",
             controller: "OrganizationsCtrl"
+        })
+        .state('user', {
+            url: "/user",
+            templateUrl: "templates/_user.html",
+            controller: "UserCtrl"
         });
 
     // if none of the above states are matched, use this as the fallback
