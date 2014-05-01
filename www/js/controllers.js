@@ -35,7 +35,7 @@ angular.module('starter.controllers', [])
     };
 }).controller('UserCtrl', function ($scope, userService) {
         $scope.user = {};
-        $scope.user.id = 3;
+        $scope.user.id = localStorage.getItem("userId");
         $scope.user.places = userService.getPlacesByUserId($scope.user.id);
 
         $scope.chosen = {};
