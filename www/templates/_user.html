@@ -1,10 +1,14 @@
-<img src="img/logo.png" style="height: 50px;">
+<ion-view title="חדרי האוכל שלי">
+    <ion-content>
+        <img src="img/logo.png" style="height: 50px;">
 
-<div class="list">
+        <div class="list">
 
-    <a class="item item-avatar"  ng-href="#/places/{{ place.id }}" ng-repeat="place in user.places" dir="rtl">
-        <img ng-src="{{ place.imageUrl }}" style="height: 100%; width: auto;">
-        <h2>{{ place.name }}</h2>
-        <p>צה"ל / שלישות</p>
-    </a>
-</div>
+            <a class="item item-avatar"  ng-href="#/places/{{ place.id }}" ng-repeat="place in user.places" dir="rtl">
+                <img ng-src="{{ place.imageUrl }}" style="height: 100%; width: auto;">
+                <h2>{{ place.name }}</h2>
+                <p>צה"ל / שלישות</p>
+            </a>
+        </div>
+    </ion-content>
+</ion-view>
