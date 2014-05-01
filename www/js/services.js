@@ -4,13 +4,14 @@ angular.module('starter.services', [])
     // service or factory. This can only be done at the
     // "$get" method.
 
-    this.$get = function($firebaseSimpleLogin) {
+    this.$get = function($firebaseSimpleLogin, userService) {
         var dataRef = new Firebase("https://caterate.firebaseio.com");
         var loginObj = $firebaseSimpleLogin(dataRef);
         return {
             login: function () {
-                return loginObj.$login('facebook').then(function () {
+                return loginObj.$login('facebook').then(function (user) {
                     localStorage.setItem("isLoggedIn", true);
+                    userService.addUser(user.id, user.displayName);
                 });
             },
             logout: function () {

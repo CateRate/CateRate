@@ -2,9 +2,10 @@
 
 <div class="list">
 
-    <a class="item item-avatar"  ng-href="#/places/{{ place.id }}" ng-repeat="place in user.places" dir="rtl">
+    <a class="item item-avatar item-icon-right"  ng-href="#/places/{{ place.id }}" ng-repeat="place in user.places" dir="rtl">
         <img ng-src="{{ place.imageUrl }}" style="height: 100%; width: auto;">
         <h2>{{ place.name }}</h2>
         <p>צה"ל / שלישות</p>
+        <i class="icon ion-chevron-right icon-accessory"></i>
     </a>
 </div>

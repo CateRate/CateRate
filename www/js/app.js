@@ -13,10 +13,6 @@ var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.se
           StatusBar.styleDefault();
         }
     });
-})
-.run(function ($firebaseSimpleLogin, $state, $rootScope) {
-        var dataRef = new Firebase("https://caterate.firebaseio.com/");
-        var loginObj = $firebaseSimpleLogin(dataRef);
 });
 
 app.config(function($stateProvider, $urlRouterProvider, loginManagerProvider) {
@@ -55,5 +51,5 @@ app.config(function($stateProvider, $urlRouterProvider, loginManagerProvider) {
         });
 
     // if none of the above states are matched, use this as the fallback
-    $urlRouterProvider.otherwise(loginManagerProvider.isLoggedIn() ? "/organizations" : "/login");
+    $urlRouterProvider.otherwise(loginManagerProvider.isLoggedIn() ? "/user" : "/login");
 });
