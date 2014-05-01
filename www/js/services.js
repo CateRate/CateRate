@@ -124,12 +124,27 @@ app.factory("placesService", function($firebase, $rootScope) {
             })
             return branches;
         },
-        likeFood: function (userId, placeId, foodId, isLike) {
+        likeFood: function (userId, placeId, foodId, isLike, currentAmount) {
             var foodBaseUrl = 'https://caterate.firebaseio.com/Places/' + placeId + '/Foods/' + foodId;
-            var likeList = new Firebase(foodBaseUrl + "/likers");
-            var like = {};
-            like[userId] = isLike;
-            likeList.update(like);
+            var likersList = new Firebase(foodBaseUrl + "/likers");
+            var liker = {};
+            liker[userId] = isLike;
+            likersList.update(liker);
+
+            if(isLike){
+                var likesList = new Firebase(foodBaseUrl + "/likes");
+                likesList.set(currentAmount + 1);
+            }else{
+                var dislikesList = new Firebase(foodBaseUrl + "/dislikes");
+                dislikesList.set(currentAmount + 1);
+            }
+        },
+        reportTraffic: function (placeId, trafficReport, currentTraffic) {
+            var baseUrl = 'https://caterate.firebaseio.com/Places/' + placeId;
+            var trafficRef = new Firebase(baseUrl);
+            var trafficLevel = {};
+            trafficLevel['traffic'] = (trafficReport + 2*currentTraffic) / 3;
+            trafficRef.update(trafficLevel);
         }
     };
 });
