@@ -37,14 +37,18 @@ angular.module('starter.controllers', [])
         userService.addPlacesToUser(placeIds);
         $state.go('user');
     };
-}).controller('UserCtrl', function ($scope, userService, $state) {
+}).controller('UserCtrl', function ($scope, userService, $state, placesService, branchesService) {
         $scope.user = {};
-        $scope.user.id = 3;
+        $scope.user.id = localStorage.getItem("userId");
         $scope.user.places = userService.getPlacesByUserId($scope.user.id);
 
         $scope.addPlaces = function () {
             $state.go('organizations');
         };
+        $scope.init = function(place, placeId, branchId) {
+            place.branch = placesService.getBranchByPlaceId(placeId);
+            place.organization = branchesService.getOrganizationByBranchId(branchId);
+        }
 
         $scope.chosen = {};
 }).controller('PlaceCtrl', function ($scope, userService, $stateParams, placesService) {

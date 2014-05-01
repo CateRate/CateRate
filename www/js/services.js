@@ -169,8 +169,6 @@ app.factory("userService", function($firebase, $rootScope, placesService, branch
                     new Firebase(placesBaseUrl + "/" + placeId).on("value", function(placesSnapshot) {
                         var place = placesSnapshot.val();
                         place.id = placeId;
-                        place.branch = angular.copy(placesService.getBranchByPlaceId(placeId));
-                        place.organization = angular.copy(branchesService.getOrganizationByBranchId(place.branchId));
                         console.log(place);
                         places.push(angular.copy(place));
                         $rootScope.$apply();
