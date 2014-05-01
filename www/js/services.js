@@ -149,7 +149,7 @@ app.factory("placesService", function($firebase, $rootScope) {
 });
 
 // user service
-app.factory("userService", function($firebase, $rootScope) {
+app.factory("userService", function($firebase, $rootScope, placesService, branchesService) {
     var baseUrl = 'https://caterate.firebaseio.com/Users';
 
     return {
@@ -168,6 +168,9 @@ app.factory("userService", function($firebase, $rootScope) {
                     new Firebase(placesBaseUrl + "/" + placeId).on("value", function(placesSnapshot) {
                         var place = placesSnapshot.val();
                         place.id = placeId;
+                        place.branch = angular.copy(placesService.getBranchByPlaceId(placeId));
+                        place.organization = angular.copy(branchesService.getOrganizationByBranchId(place.branchId));
+                        console.log(place);
                         places.push(angular.copy(place));
                         $rootScope.$apply();
                     });

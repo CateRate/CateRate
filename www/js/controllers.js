@@ -19,8 +19,9 @@ angular.module('starter.controllers', [])
         loginManager.logout();
         $location.path('/login');
     }
-}).controller('OrganizationsCtrl', function ($scope, organizationService) {
+}).controller('OrganizationsCtrl', function ($scope, organizationService,userService) {
     $scope.organizations = organizationService.index();
+
 }).controller('OrganizationCtrl', function ($scope, organizationService, $stateParams) {
     $scope.organization = {};
     $scope.organization.id = $stateParams.organizationId;
