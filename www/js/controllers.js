@@ -23,9 +23,9 @@ angular.module('starter.controllers', [])
         $scope.organization = {};
         $scope.organization.id = $stateParams.organizationId;
         $scope.organization.branches = organizationService.getBranchesByOrganizationId($scope.organization.id);
-}).controller('BranchCtrl', function ($scope, branchService, $stateParams) {
+}).controller('BranchCtrl', function ($scope, branchesService, $stateParams) {
     $scope.branch = {};
     $scope.branch.id = $stateParams.branchId;
     $scope.branch.organizationId = $stateParams.organizationId;
-    $scope.branch.places = organizationService.getBranchesByOrganizationId($scope.organization.id);
+    $scope.branch.places = branchesService.getPlacesByBranchId($scope.branch.id);
 });
