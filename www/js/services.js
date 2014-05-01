@@ -10,19 +10,19 @@ angular.module('starter.services', [])
         return {
             login: function () {
                 return loginObj.$login('facebook').then(function (user) {
-                    localStorage.setItem("isLoggedIn", true);
+                    localStorage.setItem("userId", user.id);
                     userService.addUser(user.id, user.displayName);
                 });
             },
             logout: function () {
                 loginObj.$logout('facebook');
-                localStorage.removeItem("isLoggedIn");
+                localStorage.removeItem("userId");
             }
         };
     };
 
     this.isLoggedIn = function () {
-            return !!localStorage.getItem("isLoggedIn");
+            return !!localStorage.getItem("userId");
     };
 });
 
@@ -161,9 +161,9 @@ app.factory("userService", function($firebase, $rootScope) {
             })
             return places;
         },
-        addPlacesToUser: function (userId, placesIds) {
+        addPlacesToUser: function (placesIds) {
             var placesBaseUrl = 'https://caterate.firebaseio.com/Places';
-            var userPlaces = new Firebase(baseUrl + "/" + userId + "/" + "Places");
+            var userPlaces = new Firebase(baseUrl + "/" + localStorage.getItem("userId") + "/" + "Places");
             angular.forEach(placesIds, function (placeId) {
                 var place = {};
                 place[placeId] = true;

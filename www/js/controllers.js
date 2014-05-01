@@ -17,13 +17,22 @@ angular.module('starter.controllers', [])
     $scope.organization = {};
     $scope.organization.id = $stateParams.organizationId;
     $scope.organization.branches = organizationService.getBranchesByOrganizationId($scope.organization.id);
-}).controller('BranchCtrl', function ($scope, branchesService, $stateParams) {
+}).controller('BranchCtrl', function ($scope, branchesService, $stateParams, userService, $state) {
     $scope.branch = {};
     $scope.branch.id = $stateParams.branchId;
     $scope.branch.organizationId = $stateParams.organizationId;
     $scope.branch.places = branchesService.getPlacesByBranchId($scope.branch.id);
 
     $scope.chosen = {};
+
+    $scope.addPlaces = function () {
+        var placeIds = [];
+        _.forEach($scope.chosen, function (value, key) {
+            value && placeIds.push(key);
+        });
+        userService.addPlacesToUser(placeIds);
+        $state.go('user');
+    };
 }).controller('UserCtrl', function ($scope, userService) {
         $scope.user = {};
         $scope.user.id = 3;
