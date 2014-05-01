@@ -18,3 +18,8 @@
     margin-left: -101px;
     margin-top: -23px;
 }
+
+.reportButton{
+    width: 33%;
+    dir: 'RTL';
+}
