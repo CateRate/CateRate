@@ -1,46 +1,47 @@
 angular.module('starter.controllers', [])
-    .controller('LoginCtrl', function($scope, $firebaseSimpleLogin, loginManager, $location) {
+    .controller('LoginCtrl', function($scope, $firebaseSimpleLogin, loginManager, $location, $state) {
+    $scope.loginData = {};
 
-//        $scope.login = function () {
-//            alert("logging in");
-//            loginManager.login().then(function () {
-//                alert("logged in");
-//                $location.path('/organizations');
-//            });
-//        }
+    var dataRef = new Firebase("https://caterate.firebaseio.com/");
+    $scope.loginObj = $firebaseSimpleLogin(dataRef);
 
-        $scope.loginData = {};
+    $scope.login = function() {
+        $scope.loginObj.$login('facebook').then(function(user) {
+            // The root scope event will trigger and navigate
+            $state.go('user');
+        }, function(error) {
+            // Show a form error here
+            console.error('Unable to login', error);
+        });
+    };
+}).controller('MainCtrl', function ($scope, loginManager, $location) {
+    $scope.logout = function () {
+        loginManager.logout();
+        $location.path('/login');
+    }
+}).controller('OrganizationsCtrl', function ($scope, organizationService) {
+    $scope.organizations = organizationService.index();
+}).controller('OrganizationCtrl', function ($scope, organizationService, $stateParams) {
+    $scope.organization = {};
+    $scope.organization.id = $stateParams.organizationId;
+    $scope.organization.branches = organizationService.getBranchesByOrganizationId($scope.organization.id);
+}).controller('BranchCtrl', function ($scope, branchesService, $stateParams) {
+    $scope.branch = {};
+    $scope.branch.id = $stateParams.branchId;
+    $scope.branch.organizationId = $stateParams.organizationId;
+    $scope.branch.places = branchesService.getPlacesByBranchId($scope.branch.id);
 
-        var dataRef = new Firebase("https://caterate.firebaseio.com/");
-        $scope.loginObj = $firebaseSimpleLogin(dataRef);
+    $scope.chosen = {};
+}).controller('UserCtrl', function ($scope, userService) {
+        $scope.user = {};
+        $scope.user.id = 3;
+        $scope.user.places = userService.getPlacesByUserId($scope.user.id);
 
-        $scope.login = function() {
-            $scope.loginObj.$login('facebook').then(function(user) {
-                // The root scope event will trigger and navigate
-            }, function(error) {
-                // Show a form error here
-                console.error('Unable to login', error);
-            });
-        };
+        $scope.chosen = {};
+}).controller('PlaceCtrl', function ($scope, userService, $stateParams, placesService) {
+    $scope.place = {};
+    $scope.place.id = $stateParams.placeId;
+    $scope.places = placesService.get($scope.place.id);
 
-//        $scope.loginObj.$getCurrentUser().then(function(data){
-////            $location.path('/organizations');
-//        });
-}).controller('OrganizationsCtrl', function ($scope, loginManager, $location) {
-    //var organizationsRef = new Firebase('https://caterate.firebaseio.com/Organizations');
-    //$scope.organizations = $firebase(organizationsRef);
-        $scope.organizations = [{title:"Google"}, {title:"Intel"}];
-        $scope.logout = function () {
-            loginManager.logout();
-                $location.path('/login');
-        }
-        console.log("org")
-}).controller('UserCtrl', function (organizationService) {
-
-        console.log("user")
-    var org = organizationService.getBranchesByOrganizationId('1');
-    org.on('value', function() {
-        console.log(org);
-    });
-
+    $scope.chosen = {};
 });
