@@ -1,26 +1,30 @@
-<ion-view title="Rate Food">
+<ion-view title="{{place.Foods[foodId].name}}">
 
     <ion-content>
               <div align="center">
-                  <img ng-src="" style="align-content: center; min-width: 160px; max-width: 160px;min-height: 160px; max-height: 160px; border: 4px solid red; border-radius: 100px; margin: 10px; background: white;" />
+                  <img ng-src="{{place.Foods[foodId].imageUrl}}" style="align-content: center; min-width: 160px; max-width: 160px;min-height: 160px; max-height: 160px; border: 0px solid red; border-radius: 100px; margin: 15px; background: white;" />
               </div>
-                <br/>
 
             </div>
             <div align="center" class="col">
-                <button class="reportButton button icon-left ion-thumbsup button-positive">Like</button>
-                <button class="reportButton button icon-left ion-thumbsdown button-assertive">Dislike</button>
+                <button class="reportButton button button-outline icon-left ion-thumbsup button-positive" ng-click="likeFood()">Like</button>
+                <button class="reportButton button button-outline icon-left ion-thumbsdown button-assertive" ng-click="dislikeFood()" > Dislike</button>
 
 
 
 
             </div>
+            </br>
+            <div align="center" class="button-bar" >
+                <a class="button-small button button-assertive">!!!עמוס</a>
+                <a class="button-small button button-energized">סביר</a>
+                <a class="button-small button button-balanced">!!!אין תור</a>
 
-            <div align="center" class="button-bar">
-                <a class="button button-assertive">!!!עמוס</a>
-                <a class="button button-energized">סביר</a>
-                <a class="button button-balanced">!!!אין תור</a>
             </div>
 
     </ion-content>
+    <div class="bar bar-footer">
+        <div class="title"><img src='img/logo.png' height='50px'></div>
+
+    </div>
 </ion-view>

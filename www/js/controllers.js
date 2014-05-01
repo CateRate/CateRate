@@ -60,8 +60,30 @@ angular.module('starter.controllers', [])
         $scope.chosen = {};
     }).controller('FoodCtrl', function ($scope, userService, $stateParams, placesService) {
         $scope.placeId = $stateParams.placeId;
+        $scope.place = placesService.get($scope.placeId);
         $scope.foodId = $stateParams.foodId;
         $scope.place = placesService.get($scope.placeId);
+
+        $scope.likeFood = function(){
+
+            placesService.likeFood(localStorage.getItem("userId"),
+                                   $scope.placeId,
+                                   true,
+                                   $scope.place.Foods[$scope.foodId].likes,
+                                   $scope.place.Foods[$scope.foodId].dislikes,
+                                   $scope.place.Foods[$scope.foodId].likers[localStorage.getItem("userId")])
+
+        };
+
+
+        $scope.dislikeFood = function(){
+            placesService.likeFood(localStorage.getItem("userId"),
+                $scope.placeId,
+                false,
+                $scope.place.Foods[$scope.foodId].likes,
+                $scope.place.Foods[$scope.foodId].dislikes,
+                $scope.place.Foods[$scope.foodId].likers[localStorage.getItem("userId")])
+        };
 
 
         $scope.chosen = {};

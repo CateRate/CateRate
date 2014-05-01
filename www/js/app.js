@@ -50,7 +50,8 @@ app.config(function($stateProvider, $urlRouterProvider, loginManagerProvider) {
             controller: "PlaceCtrl"
         }).state('food', {
             url: "/places/:placeId/foods/:foodId",
-            templateUrl: "templates/_food.html"
+            templateUrl: "templates/_food.html",
+            controller: "FoodCtrl"
         });
 
     // if none of the above states are matched, use this as the fallback
