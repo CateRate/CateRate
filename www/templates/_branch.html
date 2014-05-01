@@ -12,11 +12,12 @@
     <ul class="list">
         <li class="item item-checkbox" ng-repeat="place in branch.places">
             <label class="checkbox">
-                <input type="checkbox" ng-model="chosen[place]">
+                <input type="checkbox" ng-model="chosen[place.id]">
             </label>
             {{ place.name }}
         </li>
     </ul>
+    {{ chosen }}
 
     </ion-content>
     <div class="bar bar-footer">
