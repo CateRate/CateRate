@@ -24,9 +24,11 @@ angular.module('starter.services', [])
             return !!localStorage.getItem("isLoggedIn");
     };
 });
+
+// organization service
 app.factory("organizationService", function($firebase) {
     var baseUrl = 'https://caterate.firebaseio.com/Organizations';
-    var result =  {
+    return {
         index: function() {
             return $firebase(new Firebase(baseUrl));
         },
@@ -34,9 +36,58 @@ app.factory("organizationService", function($firebase) {
             return $firebase(new Firebase(baseUrl + "/" + id));
         },
         getBranchesByOrganizationId: function(id) {
-            result.get(id);
+            var branchesBaseUrl = 'https://caterate.firebaseio.com/Branches';
+            var branches = [];
+            var organization = new Firebase(baseUrl + "/" + id);
+            organization.on('value', function(snapshot) {
+                angular.forEach(Object.keys(snapshot.val().Branches), function(branchId) {
+                    new Firebase(branchesBaseUrl + "/" + branchId).on("value", function(branchesSnapshot) {
+                        var branch = branchesSnapshot.val();
+                        branches.push(angular.copy(branch));
+                    });
+                })
+            })
+            return branches;
         }
     };
+});
 
-    return result;
+// brunches service
+app.factory("branchesService", function($firebase) {
+    var baseUrl = 'https://caterate.firebaseio.com/Branches';
+
+    return {
+        index: function() {
+            return $firebase(new Firebase(baseUrl));
+        },
+        get: function(id) {
+            return $firebase(new Firebase(baseUrl + "/" + id));
+        },
+        getPlacesByBranchId: function(id) {
+            var placesBaseUrl = 'https://caterate.firebaseio.com/Places';
+            var places = [];
+            var branch = new Firebase(baseUrl + "/" + id);
+            branch.on('value', function(snapshot) {
+                angular.forEach(Object.keys(snapshot.val().Places), function(placeId) {
+                    new Firebase(placesBaseUrl + "/" + placeId).on("value", function(placesSnapshot) {
+                        var place = placesSnapshot.val();
+                        places.push(angular.copy(place));
+                    });
+                })
+            })
+            return places;
+        },
+
+        getOrganizationByBranchId: function(id) {
+            var OrganizationsBaseUrl = 'https://caterate.firebaseio.com/Organizations';
+            var organization;
+            var branch = new Firebase(baseUrl + "/" + id);
+            branch.on('value', function (snapshot) {
+                new Firebase(OrganizationsBaseUrl + "/" + snapshot.organizationId).on("value", function (orgSnapshot) {
+                    organization = orgSnapshot.val();
+                });
+                return organization;
+            })
+        }
+    };
 });

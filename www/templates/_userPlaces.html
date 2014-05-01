@@ -1,3 +1,8 @@
-<ul class="list">
-    <li class="item" ng-repeat="place in userPlaces"> {{ place.title }} </li>
-</ul>
+<div class="list">
+    <a class="item item-icon-left item-icon-right" ng-repeat="place in userPlaces" href="#">
+        <i class="icon ion-ios7-world-outline"></i>
+        {{ place}}
+        <i class="icon ion-chevron-right"></i>
+    </a>
+
+</div>
