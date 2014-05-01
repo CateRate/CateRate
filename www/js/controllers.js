@@ -17,6 +17,8 @@ angular.module('starter.controllers', [])
     };
 }).controller('OrganizationsCtrl', function ($scope, organizationService, $state) {
     $scope.organizations = organizationService.index();
+
+
 }).controller('OrganizationCtrl', function ($scope, organizationService, $stateParams) {
     $scope.organization = {};
     $scope.organization.id = $stateParams.organizationId;
