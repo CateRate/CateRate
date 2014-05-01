@@ -1,0 +1,24 @@
+<ion-view title="Organizations">
+
+    <ion-nav-buttons side="right">
+        <button class="button" ng-click="logout()">
+            Logout
+        </button>
+        <button class="button">
+            Done
+        </button>
+    </ion-nav-buttons>
+
+    <ion-content>
+        <!-- The content of the page -->
+    <div class="list">
+        <a class="item item-icon-left item-icon-right" ng-repeat="branch in organization.branches" href="#">
+            <i class="icon ion-ios7-world-outline"></i>
+            {{ branch.name }}
+            <i class="icon ion-chevron-right icon-accessory"></i>
+        </a>
+    </div>
+
+    </ion-content>
+</ion-view>
+

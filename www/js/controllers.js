@@ -10,21 +10,20 @@ angular.module('starter.controllers', [])
 //        $scope.loginObj.$getCurrentUser().then(function(data){
 ////            $location.path('/organizations');
 //        });
-}).controller('OrganizationsCtrl', function ($scope, loginManager, $location) {
+}).controller('OrganizationsCtrl', function ($scope, loginManager, $location, organizationService) {
     //var organizationsRef = new Firebase('https://caterate.firebaseio.com/Organizations');
     //$scope.organizations = $firebase(organizationsRef);
-        $scope.organizations = [{title:"Google"}, {title:"Intel"}];
+        $scope.organizations = organizationService.index();
         $scope.logout = function () {
             loginManager.logout();
                 $location.path('/login');
         }
         console.log("org")
-}).controller('UserCtrl', function (organizationService) {
+}).controller('OrganizationCtrl', function ($scope, organizationService, $stateParams) {
+    $scope.organization = {};
+    $scope.organization.id = $stateParams.id;
+    $scope.organization.branches = organizationService.getBranchesByOrganizationId('1');
 
-        console.log("user")
-    var org = organizationService.getBranchesByOrganizationId('1');
-    org.on('value', function() {
-        console.log(org);
-    });
-
+        $scope.mm = function() {
+        console.log($scope.organization);}
 });
