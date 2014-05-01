@@ -6,12 +6,16 @@ angular.module('starter.controllers', [])
             $state.go('user');
         });
     };
-}).controller('MainCtrl', function ($scope, loginManager, $location) {
+}).controller('MainCtrl', function ($scope, loginManager, $state) {
     $scope.logout = function () {
         loginManager.logout();
-        $location.path('/login');
+        $state.go('login');
     }
-}).controller('OrganizationsCtrl', function ($scope, organizationService) {
+
+    $scope.goHome = function () {
+        $state.go('user');
+    };
+}).controller('OrganizationsCtrl', function ($scope, organizationService, $state) {
     $scope.organizations = organizationService.index();
 }).controller('OrganizationCtrl', function ($scope, organizationService, $stateParams) {
     $scope.organization = {};
@@ -33,10 +37,14 @@ angular.module('starter.controllers', [])
         userService.addPlacesToUser(placeIds);
         $state.go('user');
     };
-}).controller('UserCtrl', function ($scope, userService) {
+}).controller('UserCtrl', function ($scope, userService, $state) {
         $scope.user = {};
         $scope.user.id = 3;
         $scope.user.places = userService.getPlacesByUserId($scope.user.id);
+
+        $scope.addPlaces = function () {
+            $state.go('organizations');
+        };
 
         $scope.chosen = {};
 }).controller('PlaceCtrl', function ($scope, userService, $stateParams, placesService) {
