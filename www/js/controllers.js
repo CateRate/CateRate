@@ -39,9 +39,8 @@ angular.module('starter.controllers', [])
 
         $scope.chosen = {};
 }).controller('PlaceCtrl', function ($scope, userService, $stateParams, placesService) {
-    $scope.place = {};
-    $scope.place.id = $stateParams.placeId;
-    $scope.places = placesService.get($scope.place.id);
+    $scope.placeId = $stateParams.placeId;
+    $scope.place = placesService.get($scope.placeId);
 
     $scope.chosen = {};
 });

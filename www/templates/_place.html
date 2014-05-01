@@ -1,3 +1,6 @@
-<div class="row" ng-repeat="food in place.food">
-    {{food.name}}
+<div class="row" ng-repeat="food in place.Foods" ng-show="food">
+    <div class="col-3">
+        <img ng-src="{{ food.imageUrl }}" style="min-width: 60px; max-width: 60px;min-height: 60px; max-height: 60px; border: 3px solid red; border-radius: 100px; margin: 10px; background: white;" />
+    </div>
+    {{ food }}
 </div>

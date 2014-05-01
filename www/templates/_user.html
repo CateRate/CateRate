@@ -1,15 +1,10 @@
 <img src="img/logo.png" style="height: 50px;">
-<div class="row" ng-repeat="place in user.places">
-    <div class="col">
-        <a class="list card" ng-href="#/places/{{ place.id }}">
-            <div class="item item-avatar" dir="rtl">
-                <img src="http://upload.wikimedia.org/wikipedia/he/d/db/Idit-Dan.png">
-                <h2>{{ place.name }}</h2>
-                <p>צה"ל / שלישות</p>
-            </div>
-            <div class="item item-image">
-                <img ng-src="{{ place.imageUrl }}">
-            </div>
-        </a>
-    </div>
+
+<div class="list">
+
+    <a class="item item-avatar"  ng-href="#/places/{{ place.id }}" ng-repeat="place in user.places" dir="rtl">
+        <img ng-src="{{ place.imageUrl }}" style="height: 100%; width: auto;">
+        <h2>{{ place.name }}</h2>
+        <p>צה"ל / שלישות</p>
+    </a>
 </div>
