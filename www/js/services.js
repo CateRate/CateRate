@@ -161,6 +161,11 @@ app.factory("userService", function($firebase, $rootScope) {
                 place[placeId] = true;
                 userPlaces.update(place);
             });
+        },
+        addUser: function (userId, userName) {
+            var user = {};
+            user[userId] = { name: userName };
+            $firebase(new Firebase(baseUrl)).$update(user);
         }
     };
 });
