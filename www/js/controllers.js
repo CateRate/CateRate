@@ -14,13 +14,13 @@ angular.module('starter.controllers', [])
             console.error('Unable to login', error);
         });
     };
-}).controller('OrganizationsCtrl', function ($scope, loginManager, $location, organizationService) {
-    $scope.organizations = organizationService.index();
+}).controller('MainCtrl', function ($scope, loginManager, $location) {
     $scope.logout = function () {
         loginManager.logout();
-            $location.path('/login');
+        $location.path('/login');
     }
-    console.log("org")
+}).controller('OrganizationsCtrl', function ($scope, organizationService) {
+    $scope.organizations = organizationService.index();
 }).controller('OrganizationCtrl', function ($scope, organizationService, $stateParams) {
     $scope.organization = {};
     $scope.organization.id = $stateParams.organizationId;
