@@ -26,7 +26,7 @@ angular.module('starter.services', [])
 });
 app.factory("organizationService", function($firebase) {
     var baseUrl = 'https://caterate.firebaseio.com/Organizations';
-    return {
+    var result =  {
         index: function() {
             return $firebase(new Firebase(baseUrl));
         },
@@ -34,7 +34,9 @@ app.factory("organizationService", function($firebase) {
             return $firebase(new Firebase(baseUrl + "/" + id));
         },
         getBranchesByOrganizationId: function(id) {
-
+            result.get(id);
         }
     };
+
+    return result;
 });

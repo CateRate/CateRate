@@ -18,6 +18,13 @@ angular.module('starter.controllers', [])
             loginManager.logout();
                 $location.path('/login');
         }
+        console.log("org")
 }).controller('UserCtrl', function (organizationService) {
-    var org = organizationService.get('1');
+
+        console.log("user")
+    var org = organizationService.getBranchesByOrganizationId('1');
+    org.on('value', function() {
+        console.log(org);
+    });
+
 });
