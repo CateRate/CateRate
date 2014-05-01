@@ -1,11 +1,27 @@
 angular.module('starter.controllers', [])
-    .controller('LoginCtrl', function($scope, loginManager, $location) {
+    .controller('LoginCtrl', function($scope, $firebaseSimpleLogin, loginManager, $location) {
 
-        $scope.login = function () {
-            loginManager.login().then(function () {
-                $location.path('/organizations');
+//        $scope.login = function () {
+//            alert("logging in");
+//            loginManager.login().then(function () {
+//                alert("logged in");
+//                $location.path('/organizations');
+//            });
+//        }
+
+        $scope.loginData = {};
+
+        var dataRef = new Firebase("https://caterate.firebaseio.com/");
+        $scope.loginObj = $firebaseSimpleLogin(dataRef);
+
+        $scope.login = function() {
+            $scope.loginObj.$login('facebook').then(function(user) {
+                // The root scope event will trigger and navigate
+            }, function(error) {
+                // Show a form error here
+                console.error('Unable to login', error);
             });
-        }
+        };
 
 //        $scope.loginObj.$getCurrentUser().then(function(data){
 ////            $location.path('/organizations');
