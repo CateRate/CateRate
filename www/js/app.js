@@ -35,5 +35,5 @@ app.config(function($stateProvider, $urlRouterProvider, loginManagerProvider) {
         });
 
     // if none of the above states are matched, use this as the fallback
-    $urlRouterProvider.otherwise(loginManagerProvider.isLoggedIn() ? "/login" : "/organizations");
+    $urlRouterProvider.otherwise(loginManagerProvider.isLoggedIn() ? "/organizations" : "/login");
 });
