@@ -20,10 +20,12 @@ angular.module('starter.controllers', [])
         }
         console.log("org")
 }).controller('OrganizationCtrl', function ($scope, organizationService, $stateParams) {
-    $scope.organization = {};
-    $scope.organization.id = $stateParams.id;
-    $scope.organization.branches = organizationService.getBranchesByOrganizationId('1');
-
-        $scope.mm = function() {
-        console.log($scope.organization);}
+        $scope.organization = {};
+        $scope.organization.id = $stateParams.organizationId;
+        $scope.organization.branches = organizationService.getBranchesByOrganizationId($scope.organization.id);
+}).controller('BranchCtrl', function ($scope, branchService, $stateParams) {
+    $scope.branch = {};
+    $scope.branch.id = $stateParams.branchId;
+    $scope.branch.organizationId = $stateParams.organizationId;
+    $scope.branch.places = organizationService.getBranchesByOrganizationId($scope.organization.id);
 });

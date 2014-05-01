@@ -43,6 +43,7 @@ app.factory("organizationService", function($firebase, $rootScope) {
                 angular.forEach(Object.keys(snapshot.val().Branches), function(branchId) {
                     new Firebase(branchesBaseUrl + "/" + branchId).on("value", function(branchesSnapshot) {
                         var branch = branchesSnapshot.val();
+                        branch.id = branchId;
                         branches.push(angular.copy(branch));
                         $rootScope.$apply();
                     });

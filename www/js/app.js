@@ -33,7 +33,11 @@ app.config(function($stateProvider, $urlRouterProvider, loginManagerProvider) {
             templateUrl: "templates/_organizations.html",
             controller: "OrganizationsCtrl"
         }).state('organization', {
-            url: "/organizations/:id",
+            url: "/organizations/:organizationId",
+            templateUrl: "templates/_organization.html",
+            controller: "OrganizationCtrl"
+        }).state('branch', {
+            url: "/organizations/:organizationId/branches/:branchId",
             templateUrl: "templates/_organization.html",
             controller: "OrganizationCtrl"
         });
