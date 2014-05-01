@@ -1,13 +1,21 @@
-<ion-view title="חדרי האוכל שלי">
+<ion-view title="חדרי האוכל שלי"  hide-back-button="true">
+
+    <ion-nav-buttons side="left">
+        <button class="button button-clear" ng-click="addPlaces()">
+            <i class="icon ion-plus"></i>
+        </button>
+    </ion-nav-buttons>
+
     <ion-content>
         <img src="img/logo.png" style="height: 50px;">
 
         <div class="list">
 
-            <a class="item item-avatar"  ng-href="#/places/{{ place.id }}" ng-repeat="place in user.places" dir="rtl">
+            <a class="item item-avatar item-icon-right"  ng-href="#/places/{{ place.id }}" ng-repeat="place in user.places" dir="rtl">
                 <img ng-src="{{ place.imageUrl }}" style="height: 100%; width: auto;">
                 <h2>{{ place.name }}</h2>
                 <p>צה"ל / שלישות</p>
+                <i class="icon ion-chevron-right icon-accessory"></i>
             </a>
         </div>
     </ion-content>
