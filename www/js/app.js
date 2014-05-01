@@ -17,24 +17,6 @@ var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.se
 .run(function ($firebaseSimpleLogin, $state, $rootScope) {
         var dataRef = new Firebase("https://caterate.firebaseio.com/");
         var loginObj = $firebaseSimpleLogin(dataRef);
-
-        loginObj.$getCurrentUser().then(function(user) {
-            if(!user){
-                // Might already be handled by logout event below
-                $state.go('login');
-            }
-        }, function(err) {
-        });
-
-        $rootScope.$on('$firebaseSimpleLogin:login', function(e, user) {
-            $state.go('organizations');
-        });
-
-        $rootScope.$on('$firebaseSimpleLogin:logout', function(e, user) {
-            console.log($state);
-            $state.go('login');
-        });
-
 });
 
 app.config(function($stateProvider, $urlRouterProvider, loginManagerProvider) {
