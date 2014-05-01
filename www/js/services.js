@@ -26,7 +26,7 @@ angular.module('starter.services', [])
 });
 
 // organization service
-app.factory("organizationService", function($firebase) {
+app.factory("organizationService", function($firebase, $rootScope) {
     var baseUrl = 'https://caterate.firebaseio.com/Organizations';
     return {
         index: function() {
@@ -43,7 +43,9 @@ app.factory("organizationService", function($firebase) {
                 angular.forEach(Object.keys(snapshot.val().Branches), function(branchId) {
                     new Firebase(branchesBaseUrl + "/" + branchId).on("value", function(branchesSnapshot) {
                         var branch = branchesSnapshot.val();
+                        branch.id = branchId;
                         branches.push(angular.copy(branch));
+                        $rootScope.$apply();
                     });
                 })
             })
@@ -53,7 +55,7 @@ app.factory("organizationService", function($firebase) {
 });
 
 // brunches service
-app.factory("branchesService", function($firebase) {
+app.factory("branchesService", function($firebase, $rootScope) {
     var baseUrl = 'https://caterate.firebaseio.com/Branches';
 
     return {
@@ -72,6 +74,7 @@ app.factory("branchesService", function($firebase) {
                     new Firebase(placesBaseUrl + "/" + placeId).on("value", function(placesSnapshot) {
                         var place = placesSnapshot.val();
                         places.push(angular.copy(place));
+                        $rootScope.$apply();
                     });
                 })
             })
