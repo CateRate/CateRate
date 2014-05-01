@@ -1,0 +1,27 @@
+<ion-view title="חדרי אוכל">
+    <ion-nav-buttons side="right">
+        <button class="button" ng-click="logout()">
+            Logout
+        </button>
+        <button class="button">
+            Done
+        </button>
+    </ion-nav-buttons>
+
+    <ion-content>
+    <ul class="list">
+        <li class="item item-checkbox" ng-repeat="place in branch.places">
+            <label class="checkbox">
+                <input type="checkbox" ng-model="chosen[place.id]">
+            </label>
+            {{ place.name }}
+        </li>
+    </ul>
+    </ion-content>
+    <div class="bar bar-footer">
+        <button class="button button-full button-positive">
+            הוסף לחדרי האוכל שלי
+        </button>
+    </div>
+</ion-view>
+

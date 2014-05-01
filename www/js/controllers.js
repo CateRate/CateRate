@@ -1,38 +1,34 @@
 angular.module('starter.controllers', [])
-    .controller('LoginCtrl', function($scope, loginManager, $location) {
+    .controller('LoginCtrl', function($scope, $firebaseSimpleLogin, loginManager, $location) {
+    $scope.loginData = {};
 
-        $scope.login = function () {
-            loginManager.login().then(function () {
-                $location.path('/organizations');
-            });
-        }
+    var dataRef = new Firebase("https://caterate.firebaseio.com/");
+    $scope.loginObj = $firebaseSimpleLogin(dataRef);
 
-//        $scope.loginObj.$getCurrentUser().then(function(data){
-////            $location.path('/organizations');
-//        });
-}).controller('OrganizationsCtrl', function ($scope, loginManager, $location, branchesService, placesService, userService) {
-    //var organizationsRef = new Firebase('https://caterate.firebaseio.com/Organizations');
-    //$scope.organizations = $firebase(organizationsRef);
-        $scope.organizations = [{title:"Google"}, {title:"Intel"}];
-        $scope.logout = function () {
-            loginManager.logout();
-                $location.path('/login');
-        }
+    $scope.login = function() {
+        $scope.loginObj.$login('facebook').then(function(user) {
+            // The root scope event will trigger and navigate
+        }, function(error) {
+            // Show a form error here
+            console.error('Unable to login', error);
+        });
+    };
+}).controller('OrganizationsCtrl', function ($scope, loginManager, $location, organizationService) {
+    $scope.organizations = organizationService.index();
+    $scope.logout = function () {
+        loginManager.logout();
+            $location.path('/login');
+    }
+    console.log("org")
+}).controller('OrganizationCtrl', function ($scope, organizationService, $stateParams) {
+    $scope.organization = {};
+    $scope.organization.id = $stateParams.organizationId;
+    $scope.organization.branches = organizationService.getBranchesByOrganizationId($scope.organization.id);
+}).controller('BranchCtrl', function ($scope, branchesService, $stateParams) {
+    $scope.branch = {};
+    $scope.branch.id = $stateParams.branchId;
+    $scope.branch.organizationId = $stateParams.organizationId;
+    $scope.branch.places = branchesService.getPlacesByBranchId($scope.branch.id);
 
-        var org = userService.getPlacesByUserId('1');
-       //setInterval(function(){console.log(org)},3000);
-}).controller('UserCtrl', function (organizationService, branchesService) {
-
-        console.log("user")
-//    var org = organizationService.getBranchesByOrganizationId('1');
-//    org.on('value', function() {
-//        console.log(org);
-//    });
-
-        var orga = branchesService.getOrganizationByBranchId('1');
-        console.log(orga);
-        setTimeout(function(){console.log(orga)}, 4000);
-
-
-
+    $scope.chosen = {};
 });
