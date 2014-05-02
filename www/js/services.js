@@ -193,6 +193,10 @@ app.factory("placesService", function($firebase, $rootScope) {
 app.factory("userService", function($firebase, $rootScope, placesService, branchesService) {
     var baseUrl = 'https://caterate.firebaseio.com/Users';
 
+    var currentUserId = function () {
+        return localStorage.getItem("userId");
+    };
+
     return {
         index: function () {
             return $firebase(new Firebase(baseUrl));
@@ -205,23 +209,25 @@ app.factory("userService", function($firebase, $rootScope, placesService, branch
             var places = [];
             var user = new Firebase(baseUrl + "/" + id);
             user.on('value', function(snapshot) {
-                angular.forEach(Object.keys(snapshot.val().Places), function(placeId) {
-                    new Firebase(placesBaseUrl + "/" + placeId).on("value", function(placesSnapshot) {
-                        var place = placesSnapshot.val();
-                        place.id = placeId;
-                        places.push(angular.copy(place));
+                if (snapshot.val().Places) {
+                    angular.forEach(Object.keys(snapshot.val().Places), function (placeId) {
+                        new Firebase(placesBaseUrl + "/" + placeId).on("value", function (placesSnapshot) {
+                            var place = placesSnapshot.val();
+                            place.id = placeId;
+                            places.push(angular.copy(place));
 
-                        if(!$rootScope.$$phase){
-                            $rootScope.$apply();
-                        }
+                            if (!$rootScope.$$phase) {
+                                $rootScope.$apply();
+                            }
+                        });
                     });
-                })
+                }
             })
             return places;
         },
         addPlacesToUser: function (placesIds) {
             var placesBaseUrl = 'https://caterate.firebaseio.com/Places';
-            var userPlaces = new Firebase(baseUrl + "/" + localStorage.getItem("userId") + "/" + "Places");
+            var userPlaces = new Firebase(baseUrl + "/" + currentUserId() + "/" + "Places");
             angular.forEach(placesIds, function (placeId) {
                 var place = {};
                 place[placeId] = true;
@@ -229,9 +235,11 @@ app.factory("userService", function($firebase, $rootScope, placesService, branch
             });
         },
         addUser: function (userId, userName) {
-            var user = {};
-            user[userId] = { name: userName };
-            $firebase(new Firebase(baseUrl)).$update(user);
+            if ($firebase(new Firebase(baseUrl + '/' + userId)).$getIndex().length === 0) {
+                var user = {};
+                user[userId] = { name: userName };
+                $firebase(new Firebase(baseUrl)).$update(user);
+            }
         }
     };
 });
