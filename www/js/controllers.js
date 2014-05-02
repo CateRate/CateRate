@@ -74,26 +74,36 @@ angular.module('starter.controllers', [])
 
         $scope.likeFood = function(){
         //    console.log($scope.place.Foods[$scope.foodId].likers[localStorage.getItem("userId")]);
+            if ($scope.place.Foods[$scope.foodId].likers == undefined) {
+                var isLiker = undefined;
+            }else {
+                var isLiker =  $scope.place.Foods[$scope.foodId].likers[localStorage.getItem("userId")];
+            }
             placesService.likeFood(localStorage.getItem("userId"),
                                    $scope.placeId,
                                    $scope.foodId,
                                    true,
                                    $scope.place.Foods[$scope.foodId].likes,
                                    $scope.place.Foods[$scope.foodId].dislikes,
-                $scope.place.Foods[$scope.foodId].likers[localStorage.getItem("userId")])
-
+                                   isLiker)
         };
 
 
         $scope.dislikeFood = function(){
             //    console.log($scope.place.Foods[$scope.foodId].likers[localStorage.getItem("userId")]);
+            if ($scope.place.Foods[$scope.foodId].likers == undefined) {
+                var isLiker = undefined;
+            }else {
+                var isLiker =  $scope.place.Foods[$scope.foodId].likers[localStorage.getItem("userId")];
+            }
             placesService.likeFood(localStorage.getItem("userId"),
                 $scope.placeId,
                 $scope.foodId,
                 false,
                 $scope.place.Foods[$scope.foodId].likes,
                 $scope.place.Foods[$scope.foodId].dislikes,
-                $scope.place.Foods[$scope.foodId].likers[localStorage.getItem("userId")])
+                isLiker
+               )
 
         };
 
@@ -102,21 +112,24 @@ angular.module('starter.controllers', [])
             placesService.reportTraffic($scope.placeId,
                 $scope.foodId,
                 3,
-                $scope.place.Foods[$scope.foodId].traffic)
+                $scope.place.Foods[$scope.foodId].traffic,
+                $scope.place.Foods)
         };
         $scope.reportMediumTraffic = function(){
             //    console.log($scope.place.Foods[$scope.foodId].likers[localStorage.getItem("userId")]);
             placesService.reportTraffic($scope.placeId,
                 $scope.foodId,
                 2,
-                $scope.place.Foods[$scope.foodId].traffic)
+                $scope.place.Foods[$scope.foodId].traffic,
+                $scope.place.Foods)
         };
         $scope.reportLightTraffic = function(){
             //    console.log($scope.place.Foods[$scope.foodId].likers[localStorage.getItem("userId")]);
             placesService.reportTraffic($scope.placeId,
                 $scope.foodId,
                 1,
-                $scope.place.Foods[$scope.foodId].traffic)
+                $scope.place.Foods[$scope.foodId].traffic,
+                $scope.place.Foods)
         };
 
 
