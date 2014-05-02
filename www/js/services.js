@@ -126,7 +126,8 @@ app.factory("placesService", function($firebase, $rootScope) {
         },
         likeFood: function (userId, placeId, foodId, isLike, currentLikes, currentDislikes, isLiker) {
             var baseUrl = 'https://caterate.firebaseio.com/Places/' + placeId + '/Foods/' + foodId;
-           console.log(foodId);
+
+            console.log(currentLikers);
 
             if(isLiker && currentLikers[userId] == isLike){
 
@@ -138,6 +139,7 @@ app.factory("placesService", function($firebase, $rootScope) {
                 }else {
                     new Firrebase(baseUrl + "/dislikes").set(currentDislikes - 1);
                 }
+
             }else if(isLiker && currentLikers[userId] != isLike) {
 
                 var changeUrl = baseUrl + "/likers";

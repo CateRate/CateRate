@@ -88,6 +88,7 @@ angular.module('starter.controllers', [])
 
 
         $scope.dislikeFood = function(){
+            //    console.log($scope.place.Foods[$scope.foodId].likers[localStorage.getItem("userId")]);
             placesService.likeFood(localStorage.getItem("userId"),
                 $scope.placeId,
                 $scope.foodId,
@@ -95,6 +96,7 @@ angular.module('starter.controllers', [])
                 $scope.place.Foods[$scope.foodId].likes,
                 $scope.place.Foods[$scope.foodId].dislikes,
                 $scope.place.Foods[$scope.foodId].likers[localStorage.getItem("userId")])
+
         };
 
 
