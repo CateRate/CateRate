@@ -115,6 +115,7 @@ angular.module('starter.controllers', [])
         };
 
         $scope.reportHeavyTraffic = function(){
+
             //    console.log($scope.place.Foods[$scope.foodId].likers[localStorage.getItem("userId")]);
             placesService.reportTraffic($scope.placeId,
                 $scope.foodId,
