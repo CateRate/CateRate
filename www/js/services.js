@@ -235,13 +235,16 @@ app.factory("userService", function($firebase, $rootScope, placesService, branch
             return places;
         },
         addPlacesToUser: function (placesIds) {
-            var placesBaseUrl = 'https://caterate.firebaseio.com/Places';
             var userPlaces = new Firebase(baseUrl + "/" + currentUserId() + "/" + "Places");
             angular.forEach(placesIds, function (placeId) {
                 var place = {};
                 place[placeId] = true;
                 userPlaces.update(place);
             });
+        },
+        removePlaceFromUser: function (placeId) {
+            var placeToDeleteRef = new Firebase(baseUrl + "/" + currentUserId() + "/" + "Places/" + placeId);
+            placeToDeleteRef.remove();
         },
         addUser: function (userId, userName) {
             if ($firebase(new Firebase(baseUrl + '/' + userId)).$getIndex().length === 0) {
