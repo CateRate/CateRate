@@ -176,15 +176,25 @@ app.factory("placesService", function($firebase, $rootScope) {
                 }
             }
         },
-        reportTraffic: function (placeId,foodId, trafficReport, currentTraffic) {
-            console.log(trafficReport);
-                  var baseUrl = 'https://caterate.firebaseio.com/Places/' + placeId  + '/Foods/' + foodId ;
-            var trafficRef = new Firebase(baseUrl);
+        reportTraffic: function (placeId,foodId, trafficReport, currentTraffic, placeFoods) {
+            //set food traffic
+            var baseUrl = 'https://caterate.firebaseio.com/Places/' + placeId;
+            var foodUrl = baseUrl   + '/Foods/' + foodId;
+            var trafficRef = new Firebase(foodUrl);
             var trafficLevel = {};
             trafficLevel['traffic'] = (trafficReport + 2*currentTraffic) / 3;
-            console.log(trafficLevel['traffic']);
-
             trafficRef.update(trafficLevel);
+
+            // set place traffic
+            var placeRef = new Firebase(baseUrl);
+            var placeTraffic = {};
+            var foodNum = placeFoods.length;
+            var trafficSum = 0;
+            angular.forEach(placeFoods, function(food){
+                trafficSum += food.traffic;
+            })
+            placeTraffic['traffic'] = trafficSum / foodNum;
+            placeRef.update(placeTraffic);
         }
     };
 });
