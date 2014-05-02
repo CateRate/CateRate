@@ -218,7 +218,7 @@ app.factory("userService", function($firebase, $rootScope, placesService, branch
             var places = [];
             var user = new Firebase(baseUrl + "/" + id);
             user.on('value', function(snapshot) {
-                if (snapshot.val().Places) {
+                if (snapshot.val() && snapshot.val().Places) {
                     angular.forEach(Object.keys(snapshot.val().Places), function (placeId) {
                         new Firebase(placesBaseUrl + "/" + placeId).on("value", function (placesSnapshot) {
                             var place = placesSnapshot.val();
@@ -244,11 +244,13 @@ app.factory("userService", function($firebase, $rootScope, placesService, branch
             });
         },
         addUser: function (userId, userName) {
-            if ($firebase(new Firebase(baseUrl + '/' + userId)).$getIndex().length === 0) {
-                var user = {};
-                user[userId] = { name: userName };
-                $firebase(new Firebase(baseUrl)).$update(user);
-            }
+            $firebase(new Firebase(baseUrl + '/' + userId + '/')).$on('loaded', function (snapshot) {
+                if (!snapshot || Object.keys(snapshot).length === 0) {
+                    var user = {};
+                    user[userId] = { name: userName };
+                    $firebase(new Firebase(baseUrl)).$update(user);
+                }
+            });
         }
     };
 });

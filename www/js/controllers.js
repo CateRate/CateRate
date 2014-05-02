@@ -74,26 +74,36 @@ angular.module('starter.controllers', [])
 
         $scope.likeFood = function(){
         //    console.log($scope.place.Foods[$scope.foodId].likers[localStorage.getItem("userId")]);
+            if ($scope.place.Foods[$scope.foodId].likers == undefined) {
+                var isLiker = undefined;
+            }else {
+                var isLiker =  $scope.place.Foods[$scope.foodId].likers[localStorage.getItem("userId")];
+            }
             placesService.likeFood(localStorage.getItem("userId"),
                                    $scope.placeId,
                                    $scope.foodId,
                                    true,
                                    $scope.place.Foods[$scope.foodId].likes,
                                    $scope.place.Foods[$scope.foodId].dislikes,
-                $scope.place.Foods[$scope.foodId].likers[localStorage.getItem("userId")])
-
+                                   isLiker)
         };
 
 
         $scope.dislikeFood = function(){
             //    console.log($scope.place.Foods[$scope.foodId].likers[localStorage.getItem("userId")]);
+            if ($scope.place.Foods[$scope.foodId].likers == undefined) {
+                var isLiker = undefined;
+            }else {
+                var isLiker =  $scope.place.Foods[$scope.foodId].likers[localStorage.getItem("userId")];
+            }
             placesService.likeFood(localStorage.getItem("userId"),
                 $scope.placeId,
                 $scope.foodId,
                 false,
                 $scope.place.Foods[$scope.foodId].likes,
                 $scope.place.Foods[$scope.foodId].dislikes,
-                $scope.place.Foods[$scope.foodId].likers[localStorage.getItem("userId")])
+                isLiker
+               )
 
         };
 
