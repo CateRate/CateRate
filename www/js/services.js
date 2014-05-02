@@ -143,9 +143,9 @@ app.factory("placesService", function($firebase, $rootScope) {
                     new Firebase(baseUrl + "/likes").set(currentLikes - 1);
                 }else {
 
-                    new Firrebase(baseUrl + "/dislikes").set(currentDislikes - 1);
+                    new Firebase(baseUrl + "/dislikes").set(currentDislikes - 1);
                 }
-            }else if( (isLiker != undefined) && (isLiker && !isLike) || (!isLiker && isLike)) {
+            }else if(isLiker != undefined) {
 
                 var changeUrl = baseUrl + "/likers";
                 var liker = {};
