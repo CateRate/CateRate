@@ -102,21 +102,24 @@ angular.module('starter.controllers', [])
             placesService.reportTraffic($scope.placeId,
                 $scope.foodId,
                 3,
-                $scope.place.Foods[$scope.foodId].traffic)
+                $scope.place.Foods[$scope.foodId].traffic,
+                $scope.place.Foods)
         };
         $scope.reportMediumTraffic = function(){
             //    console.log($scope.place.Foods[$scope.foodId].likers[localStorage.getItem("userId")]);
             placesService.reportTraffic($scope.placeId,
                 $scope.foodId,
                 2,
-                $scope.place.Foods[$scope.foodId].traffic)
+                $scope.place.Foods[$scope.foodId].traffic,
+                $scope.place.Foods)
         };
         $scope.reportLightTraffic = function(){
             //    console.log($scope.place.Foods[$scope.foodId].likers[localStorage.getItem("userId")]);
             placesService.reportTraffic($scope.placeId,
                 $scope.foodId,
                 1,
-                $scope.place.Foods[$scope.foodId].traffic)
+                $scope.place.Foods[$scope.foodId].traffic,
+                $scope.place.Foods)
         };
 
 
