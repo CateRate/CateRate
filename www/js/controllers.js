@@ -72,8 +72,6 @@ angular.module('starter.controllers', [])
         $scope.place = placesService.get($scope.placeId);
         $scope.userId = localStorage.getItem("userId");
 
-
-
         $scope.likeFood = function(){
         //    console.log($scope.place.Foods[$scope.foodId].likers[localStorage.getItem("userId")]);
             placesService.likeFood(localStorage.getItem("userId"),
@@ -97,6 +95,28 @@ angular.module('starter.controllers', [])
                 $scope.place.Foods[$scope.foodId].dislikes,
                 $scope.place.Foods[$scope.foodId].likers[localStorage.getItem("userId")])
 
+        };
+
+        $scope.reportHeavyTraffic = function(){
+            //    console.log($scope.place.Foods[$scope.foodId].likers[localStorage.getItem("userId")]);
+            placesService.reportTraffic($scope.placeId,
+                $scope.foodId,
+                3,
+                $scope.place.Foods[$scope.foodId].traffic)
+        };
+        $scope.reportMediumTraffic = function(){
+            //    console.log($scope.place.Foods[$scope.foodId].likers[localStorage.getItem("userId")]);
+            placesService.reportTraffic($scope.placeId,
+                $scope.foodId,
+                2,
+                $scope.place.Foods[$scope.foodId].traffic)
+        };
+        $scope.reportLightTraffic = function(){
+            //    console.log($scope.place.Foods[$scope.foodId].likers[localStorage.getItem("userId")]);
+            placesService.reportTraffic($scope.placeId,
+                $scope.foodId,
+                1,
+                $scope.place.Foods[$scope.foodId].traffic)
         };
 
 
