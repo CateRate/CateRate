@@ -27,66 +27,56 @@
     display: inline;
 }
 .LikeButton-false{
-    width: 120px;
     dir: 'RTL';
 }
 .LikeButtonDisable-false{
-    width: 120px;
     dir: 'RTL';
     display: none;
 }
 .DisLikeButton-false{
-    width: 120px;
     dir: 'RTL';
     display: none;
 }
 .DisLikeButtonDisable-false{
-    width: 120px;
     dir: 'RTL';
 
 }
 
 .LikeButton-true{
-    width: 120px;
     dir: 'RTL';
     display: none;
 }
 .LikeButtonDisable-true{
-    width: 120px;
+
     dir: 'RTL';
   }
 .DisLikeButton-true{
-    width: 120px;
+
     dir: 'RTL';
 
 }
 .DisLikeButtonDisable-true{
-    width: 120px;
+
     dir: 'RTL';
     display: none;
 }
 
 .LikeButton-{
-    width: 120px;
     dir: 'RTL';
 }
 
 .LikeButton-{
-    width: 120px;
     dir: 'RTL';
 }
 .LikeButtonDisable-{
-    width: 120px;
     dir: 'RTL';
     display: none;
 }
 .DisLikeButton-{
-    width: 120px;
     dir: 'RTL';
 
 }
 .DisLikeButtonDisable-{
-    width: 120px;
     dir: 'RTL';
     display: none;
 }

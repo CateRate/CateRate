@@ -176,11 +176,14 @@ app.factory("placesService", function($firebase, $rootScope) {
                 }
             }
         },
-        reportTraffic: function (placeId, trafficReport, currentTraffic) {
-            var baseUrl = 'https://caterate.firebaseio.com/Places/' + placeId;
+        reportTraffic: function (placeId,foodId, trafficReport, currentTraffic) {
+            console.log(trafficReport);
+                  var baseUrl = 'https://caterate.firebaseio.com/Places/' + placeId  + '/Foods/' + foodId + "/traffic";
             var trafficRef = new Firebase(baseUrl);
             var trafficLevel = {};
             trafficLevel['traffic'] = (trafficReport + 2*currentTraffic) / 3;
+            console.log(trafficLevel['traffic']);
+
             trafficRef.update(trafficLevel);
         }
     };
