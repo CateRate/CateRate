@@ -13,16 +13,24 @@
     <ion-content>
         <div class="list">
 
-            <a class="item item-avatar item-icon-right"  ng-href="#/places/{{ place.id }}" ng-repeat="place in user.places" dir="rtl">
-                <img ng-src="{{ place.imageUrl }}" style="height: 140%; width: auto;">
-                <h2 ng-init="init(place, place.id, place.branchId)"> {{ place.name }} <i class="timetraffic-{{ place.traffic | number:0 }} icon ion-clock" >  </i></h2>
-                <p>
-                    {{ place.organization[0].name }}
-                    /
-{{ place.branch[0].name }}
+
+            <a class="item item-thumbnail-left item-icon-right"  ng-href="#/places/{{ place.id }}" ng-repeat="place in user.places" dir="rtl">
+                <img ng-src="{{ place.imageUrl }}">
+                <div style="align-self: center">
+                <h2 ng-init="init(place, place.id, place.branchId)">
+                    <i class="timetraffic-{{ place.traffic | number:0 }} icon ion-clock" >  </i>
+                    {{ place.name }}
+                </h2>
+                      <p>
+                    {{ place.organization[0].name }}/
+                    {{ place.branch[0].name }}
+
+
                 </p>
-                <i class="icon ion-chevron-right icon-accessory"></i>
+                </div>
+
             </a>
+
         </div>
     </ion-content>
     <div class="bar bar-footer">
