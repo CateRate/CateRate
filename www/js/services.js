@@ -46,7 +46,9 @@ app.factory("organizationService", function($firebase, $rootScope) {
                         var branch = branchesSnapshot.val();
                         branch.id = branchId;
                         branches.push(angular.copy(branch));
-                        $rootScope.$apply();
+                        if(!$rootScope.$$phase){
+                            $rootScope.$apply();
+                        }
                     });
                 })
             })
@@ -76,7 +78,9 @@ app.factory("branchesService", function($firebase, $rootScope) {
                         var place = placesSnapshot.val();
                         place.id = placeId;
                         places.push(angular.copy(place));
-                        $rootScope.$apply();
+                        if(!$rootScope.$$phase){
+                            $rootScope.$apply();
+                        }
                     });
                 })
             })
@@ -92,7 +96,9 @@ app.factory("branchesService", function($firebase, $rootScope) {
                     new Firebase(orgBaseUrl + "/" + snapshot.val().organizationId).on("value", function(orgSnapshot) {
                         var org = orgSnapshot.val();
                         orgs.push(angular.copy(org));
-                        $rootScope.$apply();
+                        if(!$rootScope.$$phase){
+                            $rootScope.$apply();
+                        }
                     });
                 })
             return orgs;
@@ -119,7 +125,9 @@ app.factory("placesService", function($firebase, $rootScope) {
                 new Firebase(branchBaseUrl + "/" + snapshot.val().branchId).on("value", function (branchSnapshot) {
                     var branch = branchSnapshot.val();
                     branches.push(angular.copy(branch));
-                    $rootScope.$apply();
+                    if(!$rootScope.$$phase){
+                        $rootScope.$apply();
+                    }
                 });
             })
             return branches;
@@ -127,9 +135,8 @@ app.factory("placesService", function($firebase, $rootScope) {
         likeFood: function (userId, placeId, foodId, isLike, currentLikes, currentDislikes, isLiker) {
             var baseUrl = 'https://caterate.firebaseio.com/Places/' + placeId + '/Foods/' + foodId;
 
-            console.log(currentLikers);
 
-            if(isLiker && currentLikers[userId] == isLike){
+            if(isLiker === isLike){
 
                 var deleteUrl = baseUrl + "/likers/" + userId;
                 new Firebase(deleteUrl).remove();
@@ -139,8 +146,7 @@ app.factory("placesService", function($firebase, $rootScope) {
                 }else {
                     new Firrebase(baseUrl + "/dislikes").set(currentDislikes - 1);
                 }
-
-            }else if(isLiker && currentLikers[userId] != isLike) {
+            }else if( (isLiker != undefined) && (isLiker && !isLike) || (!isLiker && isLike)) {
 
                 var changeUrl = baseUrl + "/likers";
                 var liker = {};
@@ -160,7 +166,7 @@ app.factory("placesService", function($firebase, $rootScope) {
                 var liker = {};
                 liker[userId] = isLike;
                 likersList.update(liker);
-                console.log("lalala");
+
                 if(isLike){
                     var likesList = new Firebase(baseUrl + "/likes");
                     likesList.set(currentLikes + 1);
@@ -201,7 +207,10 @@ app.factory("userService", function($firebase, $rootScope, placesService, branch
                         var place = placesSnapshot.val();
                         place.id = placeId;
                         places.push(angular.copy(place));
-                        $rootScope.$apply();
+
+                        if(!$rootScope.$$phase){
+                            $rootScope.$apply();
+                        }
                     });
                 })
             })
