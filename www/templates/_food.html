@@ -1,14 +1,26 @@
 <ion-view title="{{place.Foods[foodId].name}}">
-
+    <ion-nav-buttons side="left">
+        <button class="button button-clear" ng-click="goHome()">
+            <i class="icon ion-home"></i>
+        </button>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+        <button class="button button-clear" ng-click="logout()">
+            Logout
+        </button>
+    </ion-nav-buttons>
     <ion-content>
               <div align="center">
-                  <img ng-src="{{place.Foods[foodId].imageUrl}}" style="align-content: center; min-width: 160px; max-width: 160px;min-height: 160px; max-height: 160px; border: 0px solid red; border-radius: 100px; margin: 15px; background: white;" />
+                  <img class="traffic-{{ place.Foods[foodId].traffic | number:0 }}" ng-src="{{place.Foods[foodId].imageUrl}}" style="align-content: center; min-width: 160px; max-width: 160px;min-height: 160px; max-height: 160px; border-radius: 100px; margin: 10px; background: white;" />
               </div>
-
             </div>
             <div align="center" class="col">
-                <button class="reportButton button button-outline icon-left ion-thumbsup button-positive" ng-click="likeFood()">Like</button>
-                <button class="reportButton button button-outline icon-left ion-thumbsdown button-assertive" ng-click="dislikeFood()" > Dislike</button>
+                <button class="LikeButton-{{place.Foods[foodId].likers[userId]}} button button-outline icon-left ion-thumbsup button-positive"  ng-click="likeFood()">Like ({{place.Foods[foodId].likes}})</button>
+                <button disabled="true" class="DisLikeButtonDisable-{{place.Foods[foodId].likers[userId]}} button  icon-left ion-thumbsdown button-assertive" ng-click="dislikeFood()" > Dislike  ({{place.Foods[foodId].dislikes}})</button>
+
+                <button disabled="true" class="LikeButtonDisable-{{place.Foods[foodId].likers[userId]}} button  icon-left ion-thumbsup button-positive"  ng-click="likeFood()">Like ({{place.Foods[foodId].likes}})</button>
+                <button class="DisLikeButton-{{place.Foods[foodId].likers[userId]}} button button-outline icon-left ion-thumbsdown button-assertive" ng-click="dislikeFood()" > Dislike  ({{place.Foods[foodId].dislikes}})</button>
+
 
 
 

@@ -126,8 +126,10 @@ app.factory("placesService", function($firebase, $rootScope) {
         },
         likeFood: function (userId, placeId, foodId, isLike, currentLikes, currentDislikes, isLiker) {
             var baseUrl = 'https://caterate.firebaseio.com/Places/' + placeId + '/Foods/' + foodId;
-            console.log(Object.keys(currentLikers).indexOf(8));
+           console.log(foodId);
+
             if(isLiker && currentLikers[userId] == isLike){
+
                 var deleteUrl = baseUrl + "/likers/" + userId;
                 new Firebase(deleteUrl).remove();
 
@@ -137,6 +139,7 @@ app.factory("placesService", function($firebase, $rootScope) {
                     new Firrebase(baseUrl + "/dislikes").set(currentDislikes - 1);
                 }
             }else if(isLiker && currentLikers[userId] != isLike) {
+
                 var changeUrl = baseUrl + "/likers";
                 var liker = {};
                 liker[userId] = isLike;
@@ -150,11 +153,12 @@ app.factory("placesService", function($firebase, $rootScope) {
                     new Firebase(baseUrl + "/likes").set(currentLikes - 1)
                 }
             }else {
+
                 var likersList = new Firebase(baseUrl + "/likers");
                 var liker = {};
                 liker[userId] = isLike;
                 likersList.update(liker);
-
+                console.log("lalala");
                 if(isLike){
                     var likesList = new Firebase(baseUrl + "/likes");
                     likesList.set(currentLikes + 1);

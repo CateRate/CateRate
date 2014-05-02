@@ -23,11 +23,18 @@ angular.module('starter.controllers', [])
     $scope.organization = {};
     $scope.organization.id = $stateParams.organizationId;
     $scope.organization.branches = organizationService.getBranchesByOrganizationId($scope.organization.id);
+
+
 }).controller('BranchCtrl', function ($scope, branchesService, $stateParams, userService, $state) {
     $scope.branch = {};
     $scope.branch.id = $stateParams.branchId;
     $scope.branch.organizationId = $stateParams.organizationId;
     $scope.branch.places = branchesService.getPlacesByBranchId($scope.branch.id);
+
+
+        $scope.user = {};
+        $scope.user.id = localStorage.getItem("userId");
+        $scope.user.places = userService.getPlacesByUserId($scope.user.id);
 
     $scope.chosen = {};
 
@@ -63,15 +70,19 @@ angular.module('starter.controllers', [])
         $scope.place = placesService.get($scope.placeId);
         $scope.foodId = $stateParams.foodId;
         $scope.place = placesService.get($scope.placeId);
+        $scope.userId = localStorage.getItem("userId");
+
+
 
         $scope.likeFood = function(){
-
+        //    console.log($scope.place.Foods[$scope.foodId].likers[localStorage.getItem("userId")]);
             placesService.likeFood(localStorage.getItem("userId"),
                                    $scope.placeId,
+                                   $scope.foodId,
                                    true,
                                    $scope.place.Foods[$scope.foodId].likes,
                                    $scope.place.Foods[$scope.foodId].dislikes,
-                                   $scope.place.Foods[$scope.foodId].likers[localStorage.getItem("userId")])
+                $scope.place.Foods[$scope.foodId].likers[localStorage.getItem("userId")])
 
         };
 
@@ -79,6 +90,7 @@ angular.module('starter.controllers', [])
         $scope.dislikeFood = function(){
             placesService.likeFood(localStorage.getItem("userId"),
                 $scope.placeId,
+                $scope.foodId,
                 false,
                 $scope.place.Foods[$scope.foodId].likes,
                 $scope.place.Foods[$scope.foodId].dislikes,
