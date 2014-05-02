@@ -11,6 +11,7 @@
     </ion-nav-buttons>
 
     <ion-content>
+<<<<<<< Updated upstream
         <div class="list">
 
 
@@ -27,8 +28,21 @@
 
 
                 </p>
+=======
+            <a class="item item-thumbnail-left item-icon-right"  ng-href="#/places/{{ place.id }}" ng-repeat="place in user.places" dir="rtl">
+                <div class="divImgStyle"><img ng-src="{{ place.imageUrl }}" class="imgStyle"></div>
+                <div style="align-self: center; padding-right:5%">
+                    <h2 ng-init="init(place, place.id, place.branchId)">
+                        {{ place.name }}
+                        <button ng-click="removePlace(place.id)"> </button>
+                    </h2>
+                    <p>
+                        {{ place.organization[0].name }}/
+                        {{ place.branch[0].name }}
+                    </p>
+                    <h1><i class="timetraffic-{{ place.traffic | number:0 }}  ion-clock"></i></h1>
+>>>>>>> Stashed changes
                 </div>
-
             </a>
 
         </div>

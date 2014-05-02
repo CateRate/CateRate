@@ -59,13 +59,9 @@ angular.module('starter.controllers', [])
             place.organization = branchesService.getOrganizationByBranchId(branchId);
         }
 
-        $scope.removePlace = function(place){
-            placesService.removeFood(place.id);
+        $scope.removePlace = function(placeId){
+            placesService.removeFood(placeId);
         }
-
-        angular.forEach($scope.user.places, function(place){
-            place.onGesture("swipeleft", $scope.removePlace(place), angular.element("#place.id"));
-        })
 
         $scope.chosen = {};
 }).controller('PlaceCtrl', function ($scope, userService, $stateParams, placesService) {
