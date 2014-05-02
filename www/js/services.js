@@ -245,6 +245,7 @@ app.factory("userService", function($firebase, $rootScope, placesService, branch
         },
         addUser: function (userId, userName) {
             if ($firebase(new Firebase(baseUrl + '/' + userId)).$getIndex().length === 0) {
+                console.log("DDD");
                 var user = {};
                 user[userId] = { name: userName };
                 $firebase(new Firebase(baseUrl)).$update(user);
