@@ -261,3 +261,17 @@ app.factory("userService", function($firebase, $rootScope, placesService, branch
         }
     };
 });
+// user service
+app.factory("commentsService", function($firebase, $rootScope, placesService, branchesService) {
+    var baseUrl = 'https://caterate.firebaseio.com/Places';
+
+    return {
+        addComment: function (comment) {
+            var commentRef = new Firebase(baseUrl + "/" + comment.placeId + "/Foods/" + comment.foodId + "/" + "Comments");
+            console.log(baseUrl + "/" + comment.placeId + "/Foods/" + comment.foodId + "/" + "Comments")
+            var newComment = {}
+            newComment[Date.now()] = {content: comment.text, userId: comment.userId};
+            commentRef.update(newComment);
+        }
+    };
+});;

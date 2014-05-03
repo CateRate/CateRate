@@ -77,13 +77,21 @@ angular.module('starter.controllers', [])
         $scope.placeId = $stateParams.placeId;
         $scope.place = placesService.get($scope.placeId);
         $scope.chosen = {};
-    }).controller('FoodCtrl', function ($scope, userService, $stateParams, placesService) {
+    }).controller('FoodCtrl', function ($scope, userService, $stateParams, placesService, commentsService) {
         $scope.placeId = $stateParams.placeId;
         $scope.place = placesService.get($scope.placeId);
         $scope.foodId = $stateParams.foodId;
         $scope.place = placesService.get($scope.placeId);
         $scope.userId = localStorage.getItem("userId");
 
+        $scope.comment = {text: "", userId: $scope.userId, placeId: $scope.placeId, foodId: $scope.foodId};
+
+        $scope.submitComment = function() {
+            if ($scope.comment.text != "") {
+                commentsService.addComment($scope.comment);
+                $scope.comment.text = "";
+            }
+        }
         $scope.likeFood = function(){
         //    console.log($scope.place.Foods[$scope.foodId].likers[localStorage.getItem("userId")]);
             if ($scope.place.Foods[$scope.foodId].likers == undefined) {
@@ -148,3 +156,14 @@ angular.module('starter.controllers', [])
 
         $scope.chosen = {};
     });
+
+app.filter("toArray", function(){
+    return function(obj) {
+        var result = [];
+        angular.forEach(obj, function(val, key) {
+            val.id = key;
+            result.push(val);
+        });
+        return result;
+    };
+});
