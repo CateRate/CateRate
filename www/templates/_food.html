@@ -56,7 +56,7 @@
                 <label class="item-input-wrapper">
                     <textarea placeholder="כתוב תגובה..." ng-model="comment.text"></textarea>
                 </label>
-                <button class="button button-small button-calm" ng-click="submitComment()">שלח תגובה</button>
+                <button class="button button-small button-positive" ng-click="submitComment()">שלח תגובה</button>
             </div>
 
             <div class="item" style="font-size:0.9em; padding:10px;" ng-repeat="(id, comment) in place.Foods[foodId].Comments | toArray | orderBy:'id':true" ng-show="comment!=null">
