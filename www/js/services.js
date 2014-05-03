@@ -11,6 +11,7 @@ angular.module('starter.services', [])
             login: function () {
                 return loginObj.$login('facebook').then(function (user) {
                     localStorage.setItem("userId", user.id);
+                    localStorage.setItem("displayName", user.displayName);
                     userService.addUser(user.id, user.displayName);
                 });
             },
@@ -270,7 +271,7 @@ app.factory("commentsService", function($firebase, $rootScope, placesService, br
             var commentRef = new Firebase(baseUrl + "/" + comment.placeId + "/Foods/" + comment.foodId + "/" + "Comments");
             console.log(baseUrl + "/" + comment.placeId + "/Foods/" + comment.foodId + "/" + "Comments")
             var newComment = {}
-            newComment[Date.now()] = {content: comment.text, userId: comment.userId};
+            newComment[Date.now()] = {content: comment.text, userId: localStorage.getItem("userId"), displayName: localStorage.getItem("displayName")};
             commentRef.update(newComment);
         }
     };

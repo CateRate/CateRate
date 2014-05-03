@@ -84,7 +84,7 @@ angular.module('starter.controllers', [])
         $scope.place = placesService.get($scope.placeId);
         $scope.userId = localStorage.getItem("userId");
 
-        $scope.comment = {text: "", userId: $scope.userId, placeId: $scope.placeId, foodId: $scope.foodId};
+        $scope.comment = {text: "", placeId: $scope.placeId, foodId: $scope.foodId};
 
         $scope.submitComment = function() {
             if ($scope.comment.text != "") {

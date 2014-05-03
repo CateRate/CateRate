@@ -137,3 +137,12 @@
     height: 140%;
     border-radius: 10px;
 }
+
+
+.me-true {
+    color: cornflowerblue;
+}
+
+.me-false {
+    color: darkorange;
+}
