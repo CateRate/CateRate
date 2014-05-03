@@ -104,3 +104,9 @@
 .timetraffic-3 {
     color: red;
 }
+
+.place-thumbnail {
+    width: auto;
+    height: 140%;
+    border-radius: 10px;
+}
