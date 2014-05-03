@@ -12,7 +12,7 @@
 
     <ion-content>
             <a class="item item-thumbnail-left item-icon-right"  ng-href="#/places/{{ place.id }}" ng-repeat="place in user.places" dir="rtl">
-                <div class="divImgStyle"><img ng-src="{{ place.imageUrl }}" class="imgStyle"></div>
+                <img ng-src="{{ place.imageUrl }}" class="place-thumbnail traffic-{{ place.traffic | number:0 }}">
                 <div style="align-self: center; padding-right:5%">
                     <h2 ng-init="init(place, place.id, place.branchId)">
                         {{ place.name }}
@@ -22,8 +22,9 @@
                         {{ place.organization[0].name }}/
                         {{ place.branch[0].name }}
                     </p>
-                    <h1><i class="timetraffic-{{ place.traffic | number:0 }}  ion-clock"></i></h1>
                 </div>
+
+                <i class="icon ion-chevron-right icon-accessory"></i>
             </a>
 
         </div>
