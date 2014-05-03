@@ -51,10 +51,6 @@ angular.module('starter.controllers', [])
         $scope.user.id = localStorage.getItem("userId");
         $scope.user.places = userService.getPlacesByUserId($scope.user.id);
 
-        // refresh scope every 3 seconds
-        $timeout(function(){
-        }, 3000);
-
         $scope.addPlaces = function () {
             $state.go('organizations');
         };
@@ -70,6 +66,10 @@ angular.module('starter.controllers', [])
                 }
             })
             userService.removePlaceFromUser(placeId);
+
+            if(!$scope.$$phase){
+                $scope.$apply();
+            }
         }
 
         $scope.chosen = {};
