@@ -21,9 +21,9 @@
                     </div>
                 </div>
                 <div class="col" style="z-index: -1">
-                    <div style="display: inline-block; height: 22px;margin-top: 22px;background: cornflowerblue; width: {{ 97 * food.likes / (food.likes + food.dislikes) }}%; border-radius: 0px 8px 8px 0px; border: 1px solid white;"></div>{{food.likes}}
+                    <div class="positive-bg" style="display: inline-block; height: 22px;margin-top: 22px; width: {{ 97 * food.likes / (food.likes + food.dislikes) }}%; border-radius: 0px 8px 8px 0px; border: 1px solid white;"></div>{{food.likes}}
                     <br/>
-                    <div style="display: inline-block; height: 22px;background: indianred; width: {{ 97 * food.dislikes / (food.likes + food.dislikes) }}%; border-radius: 0px 8px 8px 0px; border: 1px solid white;"></div>{{food.dislikes}}
+                    <div class="assertive-bg" style="display: inline-block; height: 22px; width: {{ 97 * food.dislikes / (food.likes + food.dislikes) }}%; border-radius: 0px 8px 8px 0px; border: 1px solid white;"></div>{{food.dislikes}}
                 </div>
                     <i class="icon ion-chevron-right icon-accessory"></i>
             </div>
