@@ -31,41 +31,31 @@
             </button>
         </div>
 
-        </br>
+            </br>
 
-        <div align="center" class="button-bar padding-horizontal" >
-            <a ng-click="reportHeavyTraffic()" class="button-small button button-assertive">!!!עמוס</a>
-            <a ng-click="reportMediumTraffic()" class="button-small button button-energized">סביר</a>
-            <a ng-click="reportLightTraffic()" class="button-small button button-balanced">!!!אין תור</a>
-        </div>
+            <div align="center" class="button-bar" >
+                <a ng-click="reportHeavyTraffic()" class="button-small button button-assertive">!!!עמוס</a>
+                <a ng-click="reportMediumTraffic()" class="button-small button button-energized">סביר</a>
+                <a ng-click="reportLightTraffic()" class="button-small button button-balanced">!!!אין תור</a>
 
-        </br>
-
-        <div class="list" dir="rtl">
-            <div class="item item-divider" style="text-align: center">
-                תגובות
             </div>
-            <!--<label class="item item-input">-->
-            <!--<textarea placeholder="כתוב תגובה..." ng-model="comment.text"></textarea>-->
-            <!--</label>-->
-            <!--<div class="item padding-horizontal">-->
-            <!--<button class="button button-block button-small button-calm" ng-click="submitComment()">שלח תגובה</button>-->
-            <!--</div>-->
-
-            <div class="item item-input-inset">
-                <label class="item-input-wrapper">
+            <div class="list list-inset" dir="rtl">
+                <div class="item item-divider" style="text-align: center">
+                    תגובות
+                </div>
+                <label class="item item-input">
                     <textarea placeholder="כתוב תגובה..." ng-model="comment.text"></textarea>
                 </label>
-                <button class="button button-small button-calm" ng-click="submitComment()">שלח תגובה</button>
+                <div class="item" style="padding: 0; margin-top:0; margin-bottom: 10px;">
+                    <button class="button button-block button-positive button-calm" style="margin: 0;" ng-click="submitComment()">שלח תגובה</button>
+                </div>
+                <div class="item" style="font-size:0.9em; padding:10px;" ng-repeat="(id, comment) in place.Foods[foodId].Comments | toArray | orderBy:'id':true" ng-show="comment!=null">
+                    <i class="icon ion-person me-{{ comment.userId == userId }}" style="font-size:1.5em;"></i>
+                    <span style="font-size:1em; font-weight: bold;" class="me-{{ comment.userId == userId }}" ng-show="comment.userId == userId">אני:</span>
+                    <span style="font-size:1em; font-weight: bold;" class="me-{{ comment.userId == userId }}" ng-show="comment.userId != userId">{{comment.displayName || "אורח"}}:</span>
+                    {{ comment.content }}
+                </div>
             </div>
-
-            <div class="item" style="font-size:0.9em; padding:10px;" ng-repeat="(id, comment) in place.Foods[foodId].Comments | toArray | orderBy:'id':true" ng-show="comment!=null">
-                <i class="icon ion-person me-{{ comment.userId == userId }}" style="font-size:1.5em;"></i>
-                <span style="font-size:1em; font-weight: bold;" class="me-{{ comment.userId == userId }}" ng-show="comment.userId == userId">אני:</span>
-                <span style="font-size:1em; font-weight: bold;" class="me-{{ comment.userId == userId }}" ng-show="comment.userId != userId">{{comment.displayName || "אורח"}}:</span>
-                {{ comment.content }}
-            </div>
-        </div>
 
     </ion-content>
 
