@@ -188,11 +188,17 @@ app.factory("placesService", function($firebase, $rootScope) {
             // set place traffic
             var placeRef = new Firebase(baseUrl);
             var placeTraffic = {};
-            var foodNum = placeFoods.length;
+            var foodNum = 0;
             var trafficSum = 0;
             angular.forEach(placeFoods, function(food){
                 trafficSum += food.traffic;
             })
+            angular.forEach(placeFoods, function(food){
+                if(food != undefined){
+                    foodNum++;
+                }
+            })
+
             placeTraffic['traffic'] = trafficSum / foodNum;
             placeRef.update(placeTraffic);
         }
