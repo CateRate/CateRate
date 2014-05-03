@@ -18,101 +18,59 @@
     margin-left: -101px;
     margin-top: -23px;
 }
+
 .foodImage {
-    width: 94%;
+    width: 100%;
     height: auto;
-    margin-left:3%;
-    margin-right:3%;
+    /*margin-left: 3%;*/
+    /*margin-right: 3%;*/
 }
-.placeImgStyle{
-    width:100%;
-    height:auto;
+
+.placeImgStyle {
+    width: 100%;
+    height: auto;
 }
-.divPlaceImgStyle{
-    width:12%;
-    height:9%;
-    float:left;
+
+.divPlaceImgStyle {
+    width: 12%;
+    height: 9%;
+    float: left;
 }
-.placeItem{
-    margin-left:-3%;
+
+.placeItem {
+    margin-left: -3%;
 }
-.removePlaceBtn{
+
+.removePlaceBtn {
     font-family: "Helvetica Neue", "Helvetica", "Ariel";
     font-size: 20px;
     text-align: center;
 }
-.XX{
+
+.XX {
     display: none;
     width: 300px;
 }
-.NotChecked-{
+
+.NotChecked- {
     display: inline;
 }
-.LikeButton-false{
-    dir: 'RTL';
-}
-.LikeButtonDisable-false{
-    dir: 'RTL';
-    display: none;
-}
-.DisLikeButton-false{
-    dir: 'RTL';
-    display: none;
-}
-.DisLikeButtonDisable-false{
-    dir: 'RTL';
 
-}
-
-.LikeButton-true{
-    dir: 'RTL';
-    display: none;
-}
-.LikeButtonDisable-true{
-
-    dir: 'RTL';
-  }
-.DisLikeButton-true{
-
-    dir: 'RTL';
-
-}
-.DisLikeButtonDisable-true{
-
-    dir: 'RTL';
-    display: none;
-}
-
-.LikeButton-{
-    dir: 'RTL';
-}
-
-.LikeButton-{
-    dir: 'RTL';
-}
-.LikeButtonDisable-{
-    dir: 'RTL';
-    display: none;
-}
-.DisLikeButton-{
-    dir: 'RTL';
-
-}
-.DisLikeButtonDisable-{
-    dir: 'RTL';
-    display: none;
+.like-button {
+    min-width: 25%;
+    max-width: 25%;
 }
 
 .traffic-1 {
-    border: 4px solid green;
+    border: 5px solid green;
 }
 
 .traffic-2 {
-    border: 4px solid orange;
+    border: 5px solid orange;
 }
 
 .traffic-3 {
-    border: 4px solid red;
+    border: 5px solid red;
 }
 
 .pic {
@@ -120,6 +78,7 @@
     border-width: 5px;
     border-color: red;
 }
+
 .timetraffic-1 {
     color: green;
 }
@@ -136,4 +95,15 @@
     width: auto;
     height: 140%;
     border-radius: 10px;
+}
+
+.food-thumbnail {
+    align-content: center;
+    min-width: 160px;
+    max-width: 160px;
+    min-height: 160px;
+    max-height: 160px;
+    border-radius: 100px;
+    margin: 10px;
+    background: white;
 }

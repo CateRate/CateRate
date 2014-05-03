@@ -11,22 +11,28 @@
     </ion-nav-buttons>
     <ion-content>
               <div align="center">
-                  <a ng-href="#/places/{{ placeId }}/foods/{{foodId}}/img"><img class="traffic-{{ place.Foods[foodId].traffic | number:0 }}" ng-src="{{place.Foods[foodId].imageUrl}}" style="align-content: center; min-width: 160px; max-width: 160px;min-height: 160px; max-height: 160px; border-radius: 100px; margin: 10px; background: white;" /></a>
+                  <a ng-href="#/places/{{ placeId }}/foods/{{foodId}}/img">
+                      <img class="food-thumbnail traffic-{{ place.Foods[foodId].traffic | number:0 }}"
+                           ng-src="{{place.Foods[foodId].imageUrl}}" />
+                  </a>
               </div>
-            </div>
+
             <div align="center" class="col">
-                <button style="max-width: 25%;min-width: 25%" class="LikeButton-{{place.Foods[foodId].likers[userId]}} button button-outline icon-left ion-thumbsup button-positive"  ng-click="likeFood()">Like ({{place.Foods[foodId].likes}})</button>
-                <button style="max-width: 25%;min-width: 25%" class="DisLikeButtonDisable-{{place.Foods[foodId].likers[userId]}} button  icon-left ion-thumbsdown button-assertive" ng-click="dislikeFood()" > Dislike  ({{place.Foods[foodId].dislikes}})</button>
+                <button class="button icon-left ion-thumbsup button-positive like-button"
+                        ng-class="{'button-outline':place.Foods[foodId].likers[userId] !== true}"
+                        ng-click="likeFood()">
+                    {{place.Foods[foodId].likes}}
+                </button>
 
-                <button style="max-width: 25%;min-width: 25%" class="LikeButtonDisable-{{place.Foods[foodId].likers[userId]}} button  icon-left ion-thumbsup button-positive"  ng-click="likeFood()">Like ({{place.Foods[foodId].likes}})</button>
-                <button style="max-width: 25%;min-width: 25%" class="DisLikeButton-{{place.Foods[foodId].likers[userId]}} button button-outline icon-left ion-thumbsdown button-assertive" ng-click="dislikeFood()" > Dislike  ({{place.Foods[foodId].dislikes}})</button>
-
-
-
-
-
+                <button class="button icon-left ion-thumbsdown button-assertive like-button"
+                        ng-class="{'button-outline': place.Foods[foodId].likers[userId] !== false }"
+                        ng-click="dislikeFood()" >
+                    {{place.Foods[foodId].dislikes}}
+                </button>
             </div>
+
             </br>
+        
             <div align="center" class="button-bar" >
                 <a ng-click="reportHeavyTraffic()" class="button-small button button-assertive">!!!עמוס</a>
                 <a ng-click="reportMediumTraffic()" class="button-small button button-energized">סביר</a>
