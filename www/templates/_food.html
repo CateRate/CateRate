@@ -33,6 +33,23 @@
                 <a ng-click="reportLightTraffic()" class="button-small button button-balanced">!!!אין תור</a>
 
             </div>
+            <div class="list" dir="rtl">
+                <div class="item item-divider" style="text-align: center">
+                    תגובות
+                </div>
+                <label class="item item-input">
+                    <textarea placeholder="כתוב תגובה..." ng-model="comment.text"></textarea>
+                </label>
+                <div class="item" style="padding: 0; margin-top:0; margin-bottom: 10px;">
+                    <button class="button button-block button-positive" style="margin: 0;" ng-click="submitComment()">שלח תגובה</button>
+                </div>
+                <div class="item" style="font-size:0.9em; padding:10px;">
+                    הפלאפל הזה נותן לי בחילה
+                </div>
+                <div class="item" style="font-size:0.9em; padding:10px;">
+                    הפלאפל הזה נותן לי בחילה
+                </div>
+            </div>
 
     </ion-content>
 

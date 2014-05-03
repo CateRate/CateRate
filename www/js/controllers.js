@@ -75,6 +75,13 @@ angular.module('starter.controllers', [])
         $scope.place = placesService.get($scope.placeId);
         $scope.userId = localStorage.getItem("userId");
 
+        $scope.comment = {text: "", userId: $scope.userId}
+
+        $scope.submitComment = function() {
+            if ($scope.comment.text != "") {
+                $scope.comment.text = "";
+            }
+        }
         $scope.likeFood = function(){
         //    console.log($scope.place.Foods[$scope.foodId].likers[localStorage.getItem("userId")]);
             if ($scope.place.Foods[$scope.foodId].likers == undefined) {
