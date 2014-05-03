@@ -96,6 +96,19 @@
     background: white;
 }
 
+.item-input-inset .item-input-wrapper textarea {
+    padding-left: 4px;
+    height: 31px;
+    background: inherit;
+    line-height: 18px;
+}
+
+[dir="rtl"] .item-input-wrapper ~ .button {
+    margin-left: 0px;
+    margin-right: 10px;
+}
+}
+
 .me-true {
     color: cornflowerblue;
 }
