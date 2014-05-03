@@ -245,6 +245,10 @@ app.factory("userService", function($firebase, $rootScope, placesService, branch
         removePlaceFromUser: function (placeId) {
             var placeToDeleteRef = new Firebase(baseUrl + "/" + currentUserId() + "/" + "Places/" + placeId);
             placeToDeleteRef.remove();
+
+            if(!$rootScope.$$phase){
+                $rootScope.$apply();
+            }
         },
         addUser: function (userId, userName) {
             $firebase(new Firebase(baseUrl + '/' + userId + '/')).$on('loaded', function (snapshot) {

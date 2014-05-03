@@ -52,6 +52,10 @@ app.config(function($stateProvider, $urlRouterProvider, loginManagerProvider) {
             url: "/places/:placeId/foods/:foodId",
             templateUrl: "templates/_food.html",
             controller: "FoodCtrl"
+        }).state('foodImg', {
+            url: "/places/:placeId/foods/:foodId/img",
+            templateUrl: "templates/_fullFoodImage.html",
+            controller: "FoodCtrl"
         });
 
     // if none of the above states are matched, use this as the fallback
