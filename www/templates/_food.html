@@ -11,7 +11,7 @@
     </ion-nav-buttons>
     <ion-content>
               <div align="center">
-                  <img class="traffic-{{ place.Foods[foodId].traffic | number:0 }}" ng-src="{{place.Foods[foodId].imageUrl}}" style="align-content: center; min-width: 160px; max-width: 160px;min-height: 160px; max-height: 160px; border-radius: 100px; margin: 10px; background: white;" />
+                  <a ng-href="#/places/{{ placeId }}/foods/{{foodId}}/img"><img class="traffic-{{ place.Foods[foodId].traffic | number:0 }}" ng-src="{{place.Foods[foodId].imageUrl}}" style="align-content: center; min-width: 160px; max-width: 160px;min-height: 160px; max-height: 160px; border-radius: 100px; margin: 10px; background: white;" /></a>
               </div>
             </div>
             <div align="center" class="col">

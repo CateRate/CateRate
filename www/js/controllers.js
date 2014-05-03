@@ -46,10 +46,14 @@ angular.module('starter.controllers', [])
         userService.addPlacesToUser(placeIds);
         $state.go('user');
     };
-}).controller('UserCtrl', function ($scope, userService, $state, placesService, branchesService) {
+}).controller('UserCtrl', function ($scope, $timeout, userService, $state, placesService, branchesService) {
         $scope.user = {};
         $scope.user.id = localStorage.getItem("userId");
         $scope.user.places = userService.getPlacesByUserId($scope.user.id);
+
+        // refresh scope every 3 seconds
+        $timeout(function(){
+        }, 3000);
 
         $scope.addPlaces = function () {
             $state.go('organizations');
@@ -60,7 +64,12 @@ angular.module('starter.controllers', [])
         }
 
         $scope.removePlace = function(placeId){
-            placesService.removeFood(placeId);
+            angular.forEach($scope.user.places, function(place){
+                if(place.id == placeId){
+                    $scope.user.places.splice(place);
+                }
+            })
+            userService.removePlaceFromUser(placeId);
         }
 
         $scope.chosen = {};

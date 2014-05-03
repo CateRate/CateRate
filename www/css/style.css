@@ -18,14 +18,28 @@
     margin-left: -101px;
     margin-top: -23px;
 }
-.imgStyle{
+.foodImage {
+    width: 90%;
+    height: auto;
+    margin-left:5%;
+    margin-right:5%;
+}
+.placeImgStyle{
     width:100%;
     height:auto;
 }
-.divImgStyle{
-    width:20%;
-    height:15%;
-    float:left
+.divPlaceImgStyle{
+    width:12%;
+    height:9%;
+    float:left;
+}
+.placeItem{
+    margin-left:-3%;
+}
+.removePlaceBtn{
+    font-family: "Helvetica Neue", "Helvetica", "Ariel";
+    font-size: 20px;
+    text-align: center;
 }
 .XX{
     display: none;
