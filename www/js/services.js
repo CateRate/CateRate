@@ -235,13 +235,16 @@ app.factory("userService", function($firebase, $rootScope, placesService, branch
             return places;
         },
         addPlacesToUser: function (placesIds) {
-            var placesBaseUrl = 'https://caterate.firebaseio.com/Places';
             var userPlaces = new Firebase(baseUrl + "/" + currentUserId() + "/" + "Places");
             angular.forEach(placesIds, function (placeId) {
                 var place = {};
                 place[placeId] = true;
                 userPlaces.update(place);
             });
+        },
+        removePlaceFromUser: function (placeId) {
+            var placeToDeleteRef = new Firebase(baseUrl + "/" + currentUserId() + "/" + "Places/" + placeId);
+            placeToDeleteRef.remove();
         },
         addUser: function (userId, userName) {
             $firebase(new Firebase(baseUrl + '/' + userId + '/')).$on('loaded', function (snapshot) {
@@ -254,3 +257,17 @@ app.factory("userService", function($firebase, $rootScope, placesService, branch
         }
     };
 });
+// user service
+app.factory("commentsService", function($firebase, $rootScope, placesService, branchesService) {
+    var baseUrl = 'https://caterate.firebaseio.com/Places';
+
+    return {
+        addComment: function (comment) {
+            var commentRef = new Firebase(baseUrl + "/" + comment.placeId + "/Foods/" + comment.foodId + "/" + "Comments");
+            console.log(baseUrl + "/" + comment.placeId + "/Foods/" + comment.foodId + "/" + "Comments")
+            var newComment = {}
+            newComment[Date.now()] = {content: comment.text, userId: comment.userId};
+            commentRef.update(newComment);
+        }
+    };
+});;

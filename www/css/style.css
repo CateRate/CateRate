@@ -18,7 +18,15 @@
     margin-left: -101px;
     margin-top: -23px;
 }
-
+.imgStyle{
+    width:100%;
+    height:auto;
+}
+.divImgStyle{
+    width:20%;
+    height:15%;
+    float:left
+}
 .XX{
     display: none;
     width: 300px;
@@ -93,6 +101,11 @@
     border: 4px solid red;
 }
 
+.pic {
+    outline-color: red;
+    border-width: 5px;
+    border-color: red;
+}
 .timetraffic-1 {
     color: green;
 }
