@@ -59,7 +59,7 @@
                 </div>
                 <div class="item item-avatar" style="overflow: visible; white-space: normal; text-overflow: inherit;font-size:0.9em; padding:10px; padding-right: 70px;" ng-repeat="(id, comment) in place.Foods[foodId].Comments | toArray | orderBy:'id':true" ng-show="comment!=null">
                     <img src="http://graph.facebook.com/{{ comment.userId }}/picture?type=square" style="right: 15px; height: 100%; width: auto;" />
-                    <p style="white-space: normal; ">
+                    <p style="white-space: normal;font-size:0.9em; ">
                     <span style="font-size:1em; font-weight: bold;" class="me-{{ comment.userId == userId }}" ng-show="comment.userId == userId">אני:</span>
                     <span style="font-size:1em; font-weight: bold;" class="me-{{ comment.userId == userId }}" ng-show="comment.userId != userId">{{comment.displayName || "אורח"}}:</span>
                     {{ comment.content }}
