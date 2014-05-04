@@ -10,18 +10,18 @@
         </button>
     </ion-nav-buttons>
     <ion-content>
-        <a class="item item-icon-right" ng-show="food" ng-repeat="(foodId, food) in place.Foods" ng-href="#/places/{{ placeId }}/foods/{{foodId}}">
-            <div class="row" ng-show="food"style="z-index: 1000; margin:5px;">
+        <a class="item item-icon-right" ng-show="food" ng-repeat="(foodId, food) in place.Foods" ng-href="#/places/{{ placeId }}/foods/{{foodId}}" style="padding: 2px 10px;">
+            <div class="row" ng-show="food"style="z-index: 1000;">
                 <div class="col" style="max-width: 70px; text-align: center;">
-                    <img class="traffic-{{ food.traffic | number:0 }}" ng-src="{{ food.imageUrl }}" style="min-width: 80px; max-width: 80px;min-height: 80px; max-height: 80px; border-radius: 100px; margin: 10px; background: white;" />
+                    <img class="traffic-{{ food.traffic | number:0 }}" ng-src="{{ food.imageUrl }}" style="min-width: 80px; max-width: 80px;min-height: 80px; max-height: 80px; border-radius: 100px; margin: 0; background: white;" />
                     <br/>
 
-                    <div style="width: 10%; min-width:100px;">
+                    <div style="width: 10%; min-width:100px;" class="bold">
                         {{food.name}}
                     </div>
                 </div>
                 <div class="col" style="z-index: -1">
-                    <div class="positive-bg" style="display: inline-block; height: 22px;margin-top: 22px; width: {{ 97 * food.likes / (food.likes + food.dislikes) }}%; border-radius: 0px 8px 8px 0px; border: 1px solid white;"></div>{{food.likes}}
+                    <div class="positive-bg" style="display: inline-block; height: 22px;margin-top: 16px; width: {{ 97 * food.likes / (food.likes + food.dislikes) }}%; border-radius: 0px 8px 8px 0px; border: 1px solid white;"></div>{{food.likes}}
                     <br/>
                     <div class="assertive-bg" style="display: inline-block; height: 22px; width: {{ 97 * food.dislikes / (food.likes + food.dislikes) }}%; border-radius: 0px 8px 8px 0px; border: 1px solid white;"></div>{{food.dislikes}}
                 </div>
