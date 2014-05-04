@@ -77,7 +77,7 @@ angular.module('starter.controllers', [])
         $scope.placeId = $stateParams.placeId;
         $scope.place = placesService.get($scope.placeId);
         $scope.chosen = {};
-    }).controller('FoodCtrl', function ($scope, userService, $stateParams, placesService, commentsService) {
+    }).controller('FoodCtrl', function ($scope, $rootScope, userService, $stateParams, placesService, commentsService) {
         $scope.placeId = $stateParams.placeId;
         $scope.place = placesService.get($scope.placeId);
         $scope.foodId = $stateParams.foodId;
@@ -128,13 +128,16 @@ angular.module('starter.controllers', [])
         };
 
         $scope.reportHeavyTraffic = function(){
-           $scope.report = 1;
+            $scope.report = 1;
             //    console.log($scope.place.Foods[$scope.foodId].likers[localStorage.getItem("userId")]);
             placesService.reportTraffic($scope.placeId,
                 $scope.foodId,
                 3,
                 $scope.place.Foods[$scope.foodId].traffic,
-                $scope.place.Foods)
+                $scope.place.Foods);
+
+            $rootScope.isReported = true;
+            $rootScope.setReport();
         };
         $scope.reportMediumTraffic = function(){
             //    console.log($scope.place.Foods[$scope.foodId].likers[localStorage.getItem("userId")]);
@@ -142,7 +145,10 @@ angular.module('starter.controllers', [])
                 $scope.foodId,
                 2,
                 $scope.place.Foods[$scope.foodId].traffic,
-                $scope.place.Foods)
+                $scope.place.Foods);
+
+            $rootScope.isReported = true;
+            $rootScope.setReport();
         };
         $scope.reportLightTraffic = function(){
             //    console.log($scope.place.Foods[$scope.foodId].likers[localStorage.getItem("userId")]);
@@ -150,7 +156,11 @@ angular.module('starter.controllers', [])
                 $scope.foodId,
                 1,
                 $scope.place.Foods[$scope.foodId].traffic,
-                $scope.place.Foods)
+                $scope.place.Foods);
+
+            $rootScope.isReported = true;
+            $rootScope.setReport();
+
         };
 
 

@@ -6,13 +6,38 @@
 // 'starter.controllers' is found in controllers.js
 var app = angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'firebase'])
 
-.run(function($ionicPlatform) {
+.run(function($ionicPlatform, $rootScope, $timeout) {
     $ionicPlatform.ready(function() {
         if(window.StatusBar) {
           // org.apache.cordova.statusbar required
           StatusBar.styleDefault();
+
         }
     });
+        $rootScope.$on('$viewContentLoaded', function() {
+            $rootScope.isReported = localStorage.getItem("isReported");
+        });
+    $rootScope.setReport = function(){
+
+        $rootScope.Clock = 120000;
+        $rootScope.tickInterval = 1000;
+        localStorage.setItem("isReported", true);
+
+            var tick = function() {
+
+                if ($rootScope.isReported) {
+                    if ($rootScope.Clock > 0) {
+                        $rootScope.Clock -= 1000;
+                        $timeout(tick, $rootScope.tickInterval);
+                    } else {
+                        $rootScope.isReported = false;
+                        localStorage.setItem("isReported", false);
+                    }
+                }
+            };
+
+            $timeout(tick, $rootScope.tickInterval);
+        }
 });
 
 app.config(function($stateProvider, $urlRouterProvider, loginManagerProvider) {

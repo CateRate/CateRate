@@ -34,10 +34,16 @@
             </br>
 
             <div align="center" class="button-bar" style="padding:10px; padding-top: 0; margin-bottom:0; padding-bottom: 0;" >
-                <a ng-click="reportHeavyTraffic()" class="bold outline button-small button button-assertive">!!!עמוס</a>
-                <a ng-click="reportMediumTraffic()" class="bold outline button-small button button-energized">סביר</a>
-                <a ng-click="reportLightTraffic()" class="bold outline button-small button button-balanced">!!!אין תור</a>
+                <a ng-click="reportHeavyTraffic()" ng-disabled="isReported" class="bold outline button-small button button-assertive">!!!עמוס</a>
+                <a ng-click="reportMediumTraffic()" ng-disabled="isReported" class="bold outline button-small button button-energized">סביר</a>
+                <a ng-click="reportLightTraffic()" ng-disabled="isReported" class="bold outline button-small button button-balanced">!!!אין תור</a>
 
+            </div>
+            <div class="get-report" ng-show="isReported">
+                <p>
+                    הדיווח התקבל, ניתן לדווח שוב בעוד:
+                    {{ Clock | date:'mm:ss' }}
+                </p>
             </div>
             <br/>
             <div class="list list-inset" dir="rtl" style="margin-bottom: 10px; margin-top:0;">

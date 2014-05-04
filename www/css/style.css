@@ -73,6 +73,12 @@
     border: 5px solid red;
 }
 
+.get-report{
+    text-align: center;
+    color: #999;
+    font-size: 1.3em;
+}
+
 .pic {
     outline-color: red;
     border-width: 5px;
