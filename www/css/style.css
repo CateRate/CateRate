@@ -108,6 +108,32 @@
     margin-right: 10px;
 }
 
+.me-true {
+    color: cornflowerblue;
+}
+
+.me-false {
+    color: darkorange;
+}
+.bold {
+    font-weight: bold;
+}
+
+.outline {
+    font-size: 1.1em;
+    text-shadow: 1px 1px 0 #000,
+    -1px 1px 0 #000,
+    1px -1px 0 #000,
+    -1px -1px 0 #000;
+}
+h1.title {
+    font-weight: bold;
+}
+
+.bar .right-buttons .button {
+    font-size: 0.9em;
+}
+
 .bar-caterate, .bar-caterate > .tabs {
     background-color: #A00000 !important;
 }
