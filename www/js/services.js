@@ -277,7 +277,11 @@ app.factory("commentsService", function($firebase, $rootScope, placesService, br
             var commentRef = new Firebase(baseUrl + "/" + comment.placeId + "/Foods/" + comment.foodId + "/" + "Comments");
             console.log(baseUrl + "/" + comment.placeId + "/Foods/" + comment.foodId + "/" + "Comments")
             var newComment = {}
-            newComment[Date.now()] = {content: comment.text, userId: localStorage.getItem("userId"), displayName: localStorage.getItem("displayName")};
+            newComment[Date.now()] = {
+                content: comment.text,
+                userId: localStorage.getItem("userId"),
+                displayName: localStorage.getItem("displayName")
+            };
             commentRef.update(newComment);
         }
     };
