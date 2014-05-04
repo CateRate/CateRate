@@ -5,7 +5,7 @@
         </button>
     </ion-nav-buttons>
     <ion-nav-buttons side="right">
-        <button class="button button-clear" ng-click="logout()">
+        <button class="button" ng-click="logout()">
             Logout
         </button>
     </ion-nav-buttons>
@@ -21,9 +21,17 @@
                     </div>
                 </div>
                 <div class="col" style="z-index: -1">
-                    <div class="positive-bg" style="display: inline-block; height: 22px;margin-top: 16px; width: {{ 97 * food.likes / (food.likes + food.dislikes) }}%; border-radius: 0px 8px 8px 0px; border: 1px solid white;"></div>{{food.likes}}
+                    <div class="positive-bg" style="display: inline-block; height: 22px;margin-top: 13px; width: {{ 93 * food.likes / (food.likes + food.dislikes) }}%; border-radius: 0px 8px 8px 0px; border: 1px solid white; text-align: right;">
+                        <span style="padding-right: 7px; font-size: 0.7em; vertical-align: super;" class="bold">
+                            {{food.likes}}
+                        </span>
+                    </div>
                     <br/>
-                    <div class="assertive-bg" style="display: inline-block; height: 22px; width: {{ 97 * food.dislikes / (food.likes + food.dislikes) }}%; border-radius: 0px 8px 8px 0px; border: 1px solid white;"></div>{{food.dislikes}}
+                    <div class="assertive-bg" style="display: inline-block; height: 22px; width: {{ 93 * food.dislikes / (food.likes + food.dislikes) }}%; border-radius: 0px 8px 8px 0px; border: 1px solid white;text-align: right;">
+                        <span style="padding-right: 7px; font-size: 0.7em; vertical-align: super;" class="bold">
+                            {{food.dislikes}}
+                        </span>
+                    </div>
                 </div>
                     <i class="icon ion-chevron-right icon-accessory"></i>
             </div>
