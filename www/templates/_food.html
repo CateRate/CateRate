@@ -5,7 +5,7 @@
         </button>
     </ion-nav-buttons>
     <ion-nav-buttons side="right">
-        <button class="button" ng-click="logout()">
+        <button class="button button-clear" ng-click="logout()">
             Logout
         </button>
     </ion-nav-buttons>
@@ -57,11 +57,13 @@
                 <div class="item item-divider" style="text-align: center">
                     תגובות
                 </div>
-                <div class="item" style="overflow: visible; white-space: normal; text-overflow: inherit;font-size:0.9em; padding:10px;" ng-repeat="(id, comment) in place.Foods[foodId].Comments | toArray | orderBy:'id':true" ng-show="comment!=null">
-                    <i class="icon ion-person me-{{ comment.userId == userId }}" style="font-size:1.5em;"></i>
+                <div class="item item-avatar" style="overflow: visible; white-space: normal; text-overflow: inherit;font-size:0.9em; padding:10px; padding-right: 70px;" ng-repeat="(id, comment) in place.Foods[foodId].Comments | toArray | orderBy:'id':true" ng-show="comment!=null">
+                    <img src="http://graph.facebook.com/{{ comment.userId }}/picture?type=square" style="right: 15px; height: 100%; width: auto;" />
+                    <p>
                     <span style="font-size:1em; font-weight: bold;" class="me-{{ comment.userId == userId }}" ng-show="comment.userId == userId">אני:</span>
                     <span style="font-size:1em; font-weight: bold;" class="me-{{ comment.userId == userId }}" ng-show="comment.userId != userId">{{comment.displayName || "אורח"}}:</span>
                     {{ comment.content }}
+                    </p>
 
                     <p style="font-size: 0.7em; color: #999;" dir="ltr">{{ comment.id | date:'dd/MM/yyyy HH:mm:ss'}}</p>
                 </div>
