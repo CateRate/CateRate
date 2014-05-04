@@ -130,10 +130,6 @@ h1.title {
     font-weight: bold;
 }
 
-.bar .right-buttons .button {
-    font-size: 0.9em;
-}
-
 .bar-caterate, .bar-caterate > .tabs {
     background-color: #A00000 !important;
 }
